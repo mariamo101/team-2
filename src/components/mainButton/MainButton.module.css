@@ -1,0 +1,8 @@
+.feedbackBtn {
+  border-radius: 0.625rem;
+  background: rgba(var(--purple));
+  padding: 0.66rem 1rem;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: rgba(var(--text-main-btns));
+}

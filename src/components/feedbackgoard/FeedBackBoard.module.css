@@ -1,0 +1,46 @@
+.gradientBoard {
+  background-image: url(../../../public/assets/suggestions/mobile/background-header.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem 0.94rem 1.5rem;
+}
+h1 {
+  color: rgba(var(--text-white));
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.187px;
+}
+h2 {
+  font-size: 13px;
+  font-weight: 500;
+  color: rgba(var(--text-white));
+  opacity: 0.75;
+}
+.headContainer {
+  width: 100%;
+  padding: 0.5rem 1.5rem;
+  background-color: rgba(var(--header-bg));
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.sortSelect {
+  display: flex;
+}
+.sort {
+  color: rgba(var(--text-main-btns));
+  font-size: 0.8125rem;
+  font-weight: 400;
+}
+.selectOption {
+  color: rgba(var(--text-main-btns));
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  width: 73%;
+}

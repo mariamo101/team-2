@@ -23,6 +23,7 @@
 
   /* for white texts */
   --text-white: 255, 255, 255;
+  --text-main-btns: 242, 244, 254;
 
   /* For not white texts in header: sort by color */
   --text-secondary: 242, 244, 254;
