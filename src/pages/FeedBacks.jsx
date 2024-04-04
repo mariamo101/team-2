@@ -1,5 +1,5 @@
 function FeedBacks() {
-  return <div>FeedBacks</div>;
+  return <div>Feedbacks </div>;
 }
 
 export default FeedBacks;

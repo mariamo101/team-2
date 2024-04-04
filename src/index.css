@@ -7,3 +7,133 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+/* Styles Rules 
+(class)-h - hover 
+(class)-a - active
+(class)-d - disabled
+
+*/
+
+:root {
+  /* Commons */
+  --title: 58, 67, 116;
+  --title-h: 70, 97, 230;
+  --paragraph: 100, 113, 150;
+
+  /* for white texts */
+  --text-white: 255, 255, 255;
+
+  /* For not white texts in header: sort by color */
+  --text-secondary: 242, 244, 254;
+
+  /* for body containers */
+  --container-bg: 255, 255, 255;
+
+  /* category buttons, upvote btns */
+  --sm-btn-bg: 242, 244, 255;
+  --sm-btn-bg-a: 70, 97, 230;
+  --sm-btn-bg-h: 207, 215, 255;
+
+  --sm-btn-txt: 207, 235, 255;
+  --sm-btn-txt-a: 255, 255, 255;
+
+  /* RoadMap */
+  --view: 70, 97, 230;
+  --view-a: 131, 151, 248;
+  --view-d: 70, 97, 230, 0.25;
+
+  --road-nums: 100, 113, 150;
+
+  --arrow: 70, 97, 230;
+  --arrow-a: 255, 255, 255;
+  --nums: 58, 67, 116;
+  --nums-a: 255, 255, 255;
+
+  /* COlors */
+  --orange: 244, 159, 133;
+  --purple: 173, 31, 234;
+  --cyan: 98, 188, 250;
+
+  /* Header Containers */
+  --header-bg: 55, 63, 104;
+
+  --add-btn: 173, 31, 234;
+  --add-btn-h: 199, 90, 246;
+
+  --edit-btn: 70, 97, 230;
+  --edit-btn-h: 124, 145, 249;
+
+  --cancel-btn: 58, 67, 116;
+  --cancel-btn-h: 101, 110, 163;
+
+  --delete-btn: 215, 55, 55;
+  --delete-btn-h: 233, 136, 136;
+
+  /* Everyore except roadmpac section */
+  --go-back-btn: 100, 113, 150;
+
+  --input-bg: 247, 248, 353;
+  --input-border-s: 70, 97, 320;
+  --input-border-e: 215, 55, 55;
+}
+
+[data-theme="dark"] {
+  --title: 255, 255, 255;
+  --title-h: 128, 59, 241;
+
+  --paragraph: 193, 193, 193;
+
+  --text-white: 255, 255, 255;
+  --text-secondary: 242, 244, 254;
+
+  --container-bg: 62, 62, 62;
+
+  --sm-btn-bg: 33, 33, 33;
+  --sm-btn-bg-a: 242, 244, 255;
+  --sm-btn-bg-h: 224, 225, 232;
+
+  --sm-btn-txt: 255, 255, 255;
+
+  --sm-btn-txt-a: 36, 36, 36;
+
+  --view: 173, 31, 234;
+  --view-a: 199, 90, 246;
+  --view-d: 70, 97, 230, 0.25;
+
+  --road-nums: 255, 255, 255;
+  --nums: 255, 255, 255;
+  --nums-a: 112, 118, 113;
+
+  --arrow: 255, 255, 255;
+  --arrow-a: 62, 62, 62;
+
+  --orange: 244, 159, 133;
+  --purple: 173, 31, 234;
+  --cyan: 98, 188, 250;
+
+  /* Header bg */
+  --header-bg: 33, 33, 33;
+
+  --add-btn: 81, 81, 81;
+  --add-btn-h: 139, 133, 133;
+
+  --edit-btn: 70, 97, 230;
+  --edit-btn-h: 124, 145, 249;
+
+  --cancel-btn: 58, 67, 116;
+  --cancel-btn-h: 101, 110, 163;
+
+  --delete-btn: 215, 55, 55;
+  --delete-btn-h: 233, 136, 136;
+
+  --go-back-btn: 255, 255, 255;
+
+  --input-bg: 40, 40, 40;
+  --input-border-s: 141, 5, 163;
+  --input-border-e: 215, 55, 55;
+}
+
+body {
+  background-color: rgba(var(--body-color));
+}
