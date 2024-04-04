@@ -1,5 +1,6 @@
 import {lazy, Suspense} from "react";
-import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
+import {BrowserRouter as Router, Routes, Route, Navigate} from "react-router-dom";
+
 import "./App.css";
 
 const Feedbacks = lazy(() => import("./pages/FeedBacks"));
@@ -13,6 +14,7 @@ function App() {
     <Router>
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
+          <Route path="/feedbacks" element={<Navigate to="/" />} />
           <Route path="/" element={<Feedbacks />} />
           <Route path="/feedbacks/:id" element={<Feedback />} />
           <Route path="/new-feedback" element={<NewFeedback />} />
