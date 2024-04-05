@@ -10,16 +10,21 @@
   margin-bottom: 55px;
 }
 
-a {
+.header a {
   color: rgba(var(--go-back-btn));
   font-family: Jost;
   font-size: 13px;
   font-weight: 700;
+  display: flex;
+  gap: 5px;
+  align-items: center;
 }
 
 .plus {
   position: absolute;
   top: -20px;
+  width: 40px;
+  height: 40px;
 }
 
 .content {
@@ -27,44 +32,4 @@ a {
   background-color: rgba(var(--container-bg));
   border-radius: 10px;
   padding: 44px 24px 24px;
-}
-
-.plus {
-  position: absolute;
-}
-
-.title,
-.label {
-  color: rgba(var(--title));
-  font-weight: 700;
-}
-
-.title {
-  font-size: 18px;
-  margin-bottom: 24px;
-  margin-top: 10px;
-}
-
-.label {
-  font-size: 13px;
-}
-
-.paragraph {
-  color: rgba(var(--paragraph));
-  font-size: 13px;
-  margin-bottom: 10px;
-}
-
-.input {
-  background-color: rgba(var(--input-bg));
-  width: 100%;
-  padding: 13px;
-  margin-top: 10px;
-  border-radius: 5px;
-}
-
-.form {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
 }
