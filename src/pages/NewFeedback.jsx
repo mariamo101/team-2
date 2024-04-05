@@ -21,9 +21,8 @@ function NewFeedback() {
     <>
       <div className={styles.container}>
         <header className={styles.header}>
-          {/* Navigation to go back to the main page */}
-
-          <Link style={{cursor: "pointer"}} onClick={goBack} to="/">
+          {/* redirecting on previous page in which we was */}
+          <Link className="no-underline" style={{cursor: "pointer"}} onClick={goBack} to="/">
             <img src={arrowLeftIcon} alt="left arrow" />
             Go back
           </Link>
