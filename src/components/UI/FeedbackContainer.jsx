@@ -24,10 +24,10 @@ function FeedbackContainer({
 
   // Calculate total length of comments and replies
 
-  const { productData } = useContext(FeedbackContext);
+  const { productData, changeUpVotes } = useContext(FeedbackContext);
+  const filtered = productData.find((product) => product.id === +id);
   useEffect(() => {
     // Filter product data based on id
-    const filtered = productData.find((product) => product.id === +id);
     const getLength = filtered?.comments?.reduce((acc, comment) => {
       if (comment.replies) {
         return acc + comment.replies.length + 1; // Adding 1 for the original comment
@@ -46,6 +46,12 @@ function FeedbackContainer({
       : status?.toLowerCase() === "in-progress"
       ? "bg-[#AD1FEA]"
       : "bg-[#62BCFA]";
+
+  function changeUpVote(feedbackId) {
+    changeUpVotes(feedbackId);
+    console.log(productData);
+  }
+
   return (
     <div
       className={`flex flex-col gap-[20px] bg-white rounded-[10px] p-[24px] md:p-[28px] lg:px-[32px] relative`}
@@ -67,11 +73,28 @@ function FeedbackContainer({
         <div className="flex gap-[40px]">
           {/* Upvote button */}
 
-          <button className="hidden md:flex flex-col items-center gap-[10px] bg-[#F2F4FE] px-[13px] py-[6px] rounded-[10px] h-fit">
-            <img src={upArrow} alt="up arrow" />
-            <span className="text-[.8125rem] text-[#3A4374] font-bold">
-              {upvotes}
-            </span>
+          <button
+            className={`hidden md:flex flex-col items-center gap-[10px] px-[13px] py-[6px] rounded-[10px] h-fit ${
+              filtered?.isUpVoted
+                ? "bg-smBtnBgA text-white"
+                : "bg-smBtnBg text-nums"
+            }`}
+            onClick={() => changeUpVote(id)}
+          >
+            {filtered?.isUpVoted ? (
+              <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M1 6l4-4 4 4"
+                  stroke="#fff"
+                  stroke-width="2"
+                  fill="none"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            ) : (
+              <img src={upArrow} alt="up arrow" />
+            )}
+            <span className="text-[.8125rem] font-bold">{upvotes}</span>
           </button>
           {/* Feedback details and Redirect to edit page*/}
           <div
@@ -90,11 +113,25 @@ function FeedbackContainer({
 
         {/* Comments and upvote button for mobile */}
         <div className="md:px-5 flex justify-between">
-          <button className="flex items-center gap-[10px] bg-[#F2F4FE] px-[13px] py-[6px] rounded-[10px] h-fit md:hidden">
-            <img src={upArrow} alt="up arrow" />
-            <span className="text-[.8125rem] text-[#3A4374] font-bold">
-              {upvotes}
-            </span>
+          <button onClick={() => changeUpVote(id)} className={`flex items-center gap-[10px] bg-[#F2F4FE] px-[13px] py-[6px] rounded-[10px] h-fit md:hidden ${
+              filtered?.isUpVoted
+                ? "bg-smBtnBgA text-white"
+                : "bg-smBtnBg text-nums"
+            }`}>
+            {filtered?.isUpVoted ? (
+              <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M1 6l4-4 4 4"
+                  stroke="#fff"
+                  stroke-width="2"
+                  fill="none"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            ) : (
+              <img src={upArrow} alt="up arrow" />
+            )}
+            <span className="text-[.8125rem] font-bold">{upvotes}</span>
           </button>
           {/* Comments count */}
           <div className="flex items-center gap-2">

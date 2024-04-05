@@ -37,7 +37,6 @@ function FeedBack() {
   useEffect(() => {
     // Find product data based on id
     const filtered = productData.filter((product) => product.id === +id)[0];
-    console.log(filtered);
 
     // Redirect to main page if no data found
     if (!filtered) {

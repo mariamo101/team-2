@@ -4,7 +4,6 @@ import { useContext } from "react";
 import { FeedbackContext } from "../../store/feedback-context";
 
 const FeedbackMessageContainer = ({feedbackId}) => {
-  console.log(feedbackId);
   // Destructuring useForm hook and extracting required methods and states
   const {
     register, // To register form inputs
@@ -32,8 +31,6 @@ const FeedbackMessageContainer = ({feedbackId}) => {
       }
     );
     reset();
-    // console.log(data);
-    // console.log(productData);
   };
 
   return (

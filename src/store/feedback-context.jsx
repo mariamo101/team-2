@@ -5,6 +5,7 @@ export const FeedbackContext = createContext({
   setProduct: () => {},
   setComment: () => {},
   editProductData: () => {},
+  changeUpVotes:()=>{},
 });
 
 export default function FeedbackContextProvider({ children }) {
@@ -55,9 +56,26 @@ export default function FeedbackContextProvider({ children }) {
     setProductData(updatedProductData);
   }
 
+  function changeUpVotes(feedbackId) {
+    setProductData((prev) => {
+      return prev.map((feedback) => {
+        if (feedback.id === feedbackId) {
+          return {
+            ...feedback,
+            upvotes: feedback.isUpVoted ? feedback.upvotes - 1 : feedback.upvotes + 1,
+            isUpVoted: !feedback.isUpVoted
+          };
+        } else {
+          return feedback;
+        }
+      });
+    });
+  }
+  
+  
   return (
     <FeedbackContext.Provider
-      value={{ productData, setProduct, editProductData, setComment }}
+      value={{ productData, setProduct, editProductData, setComment,changeUpVotes }}
     >
       {children}
     </FeedbackContext.Provider>
