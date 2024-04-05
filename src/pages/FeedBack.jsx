@@ -48,10 +48,10 @@ function FeedBack() {
             {/* Navigation */}
             <nav className="flex items-center gap-[15px]">
               <img src={leftArrow} alt="left arrow" />
-              <span className="text-[.8125rem]">Go Back</span>
+              <span className="text-title">Go Back</span>
             </nav>
             {/* Edit Feedback button */}
-            <button className="py-[10.5px] px-[16px] bg-[#4661E6] rounded-[10px] text-white text-[.8125rem]">
+            <button className="py-[10.5px] px-[16px] bg-[#4661E6] rounded-[10px] text-textWhite text-[.8125rem]">
               Edit Feedback
             </button>
           </header>
