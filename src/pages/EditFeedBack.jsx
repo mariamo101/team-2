@@ -1,5 +1,11 @@
+import {useContext} from "react";
+import {FeedbackContext} from "../store/feedback-context";
+import {useNavigate, useParams} from "react-router-dom";
+
 function EditFeedBack() {
-  return <div>EditFeedBack</div>;
+  const {id} = useParams();
+
+  return <div>{id}</div>;
 }
 
 export default EditFeedBack;
