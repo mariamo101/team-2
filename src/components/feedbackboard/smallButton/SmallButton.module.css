@@ -1,0 +1,9 @@
+.smBtn {
+  padding: 0.31rem 1rem;
+  background-color: rgba(var(--sm-btn-bg));
+  border: none;
+  border-radius: 0.625rem;
+  color: rgba(var(--sm-btn-txt));
+  font-size: 0.8125rem;
+  font-weight: 600;
+}

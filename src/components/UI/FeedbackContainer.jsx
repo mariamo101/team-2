@@ -64,8 +64,8 @@ function FeedbackContainer({
           </button>
           {/* Feedback details and Redirect to edit page*/}
           <div className='cursor-pointer' onClick={()=>{navigate(`/edit-feedback/${id}`)}}>
-            <h1 className="text-[#3A4374] text-[.8125rem]">{title}</h1>
-            <p>{description}</p>
+            <h1 className="text-title text-[.8125rem] font-bold">{title}</h1>
+            <p className='text-paragraph'>{description}</p>
             <button className="bg-[#F2F4FE] text-[#4661E6] px-[13px] py-[6px] rounded-[10px] mb-[14px]">
               {category}
             </button>
