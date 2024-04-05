@@ -1,12 +1,11 @@
 /* eslint-disable */
 // React imports
-import { useNavigate, useParams } from "react-router";
-import { useContext, useEffect, useState } from "react";
-
-import { FeedbackContext } from "../store/feedback-context";
+import {useNavigate, useParams} from "react-router";
+import {useContext, useEffect, useState} from "react";
+import {FeedbackContext} from "../store/feedback-context";
 
 // Reactstrap imports
-import { Col, Container, Row } from "reactstrap";
+import {Col, Container, Row} from "reactstrap";
 
 // SVG files
 import leftArrow from "/assets/shared/icon-arrow-left.svg";
@@ -20,10 +19,10 @@ import FeedbackMessageContainer from "../components/UI/FeedbackMessageContainer"
 // Feedback Page Component
 function FeedBack() {
   // Router parameters
-  const { id } = useParams();
+  const {id} = useParams();
 
   // Context
-  const { productData } = useContext(FeedbackContext);
+  const {productData} = useContext(FeedbackContext);
 
   // State for feedback
   const [feedback, setFeedback] = useState(null);
@@ -34,7 +33,7 @@ function FeedBack() {
   // Effect hook to fetch and set feedback data
   useEffect(() => {
     // Filter product data based on id
-    const filtered = productData.filter((product) => product.id === +id)[0];
+    const filtered = productData.filter(product => product.id === +id)[0];
 
     // Redirect to main page if no data found
     if (!filtered) return navigate("/");
