@@ -1,12 +1,12 @@
 /* eslint-disable */
 // React imports
-import { useNavigate, useParams } from "react-router";
-import { useContext, useEffect, useState } from "react";
+import {useNavigate, useParams} from "react-router";
+import {useContext, useEffect, useState} from "react";
 
-import { FeedbackContext } from "../store/feedback-context";
+import {FeedbackContext} from "../store/feedback-context";
 
 // Reactstrap imports
-import { Col, Container, Row } from "reactstrap";
+import {Col, Container, Row} from "reactstrap";
 
 // SVG files
 import leftArrow from "/assets/shared/icon-arrow-left.svg";
@@ -20,10 +20,10 @@ import FeedbackMessageContainer from "../components/UI/FeedbackMessageContainer"
 // Feedback Page Component
 function FeedBack() {
   // Router parameters
-  const { id } = useParams();
+  const {id} = useParams();
 
   // Context
-  const { productData } = useContext(FeedbackContext);
+  const {productData} = useContext(FeedbackContext);
 
   // State for feedback
   const [feedback, setFeedback] = useState(null);
@@ -34,7 +34,7 @@ function FeedBack() {
   // Effect hook to fetch and set feedback data
   useEffect(() => {
     // Filter product data based on id
-    const filtered = productData.filter((product) => product.id === +id)[0];
+    const filtered = productData.filter(product => product.id === +id)[0];
 
     // Redirect to main page if no data found
     if (!filtered) return navigate("/");
@@ -44,13 +44,13 @@ function FeedBack() {
   }, []);
 
   // Get Comments Quantity
-  const totalLength = feedback?.comments?.reduce((acc, comment)=>{
+  const totalLength = feedback?.comments?.reduce((acc, comment) => {
     if (comment.replies) {
       return acc + comment?.replies.length;
     } else {
       return acc + feedback?.comments?.length;
     }
-  },0);
+  }, 0);
 
   return (
     <div className="bg-bodyC p-6 min-h-screen">
@@ -76,9 +76,7 @@ function FeedBack() {
         <Row>
           <main className="my-5 bg-containerBg rounded-lg p-6">
             <h4 className="text-title text-[18px] font-bold tracking-[0.25px] pl-6">
-              {!feedback?.comments?.length
-                ? "No Comments yet"
-                : `${totalLength} Comments`}
+              {!feedback?.comments?.length ? "No Comments yet" : `${totalLength} Comments`}
             </h4>
             {feedback?.comments?.map((comment, index) => (
               <div key={comment.id}>
@@ -86,7 +84,7 @@ function FeedBack() {
 
                 {/* Render replies */}
                 {comment.replies &&
-                  comment.replies.map((reply) => (
+                  comment.replies.map(reply => (
                     <div className="flex relative h-full">
                       <div
                         className={`w-[0.7px] h-[150%] bg-[#647196] opacity-[.1] absolute bottom-0 left-[51px]`}

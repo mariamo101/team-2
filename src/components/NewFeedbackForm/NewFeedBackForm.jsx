@@ -27,7 +27,15 @@ function NewFeedBackForm() {
 
   //Adding product to to the list and resetting inputs
   function handleAddProduct(data) {
-    setProduct(1, data.title, data.category, 0, "suggestion", data.description, []);
+    setProduct(
+      Math.floor(Math.random() * Date.now()),
+      data.title,
+      data.category,
+      0,
+      "suggestion",
+      data.description,
+      []
+    );
     reset();
   }
   return (
@@ -61,6 +69,7 @@ function NewFeedBackForm() {
           ))}
         </select>
       </fieldset>
+
       <fieldset>
         <label htmlFor="name" className={styles.label}>
           Feedback Description
