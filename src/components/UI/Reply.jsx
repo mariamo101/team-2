@@ -10,15 +10,15 @@ const Reply = ({ reply }) => {
             className="w-10 h-10 rounded-full"
           />
           <div className="flex flex-col">
-            <h1 className="m-0 text-title text-[13px] font-bold">
+            <h1 className="m-0 text-title text-[.8125rem] font-bold">
               {reply.user.name}
             </h1>
-            <p className="m-0 text-paragraph text-[13px]">
+            <p className="m-0 text-paragraph text-[.8125rem]">
               @{reply.user.username}
             </p>
           </div>
         </div>
-        <button className="text-[#4661E6] text-[13px] font-semibold">
+        <button className="text-[#4661E6] text-[.8125rem] font-semibold">
           Reply
         </button>
       </div>
