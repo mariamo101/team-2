@@ -4,7 +4,7 @@ import GradientBoard from "../gradientBoard/GradientBoard";
 
 export default function MobileHeader() {
   return (
-    <div style={{ display: "flex", flexDirection: "column" }}>
+    <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
       <GradientBoard />
       <div className={styles.blueCont}>
         <form className={styles.sort}>

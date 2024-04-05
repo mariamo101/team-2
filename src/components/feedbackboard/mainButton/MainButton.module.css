@@ -1,9 +1,13 @@
 .purpleBtn {
   border: none;
   border-radius: 0.625rem;
-  background: rgba(var(--purple));
+  background: rgba(var(--add-btn));
   padding: 0.66rem 1rem;
   font-size: 0.8125rem;
   font-weight: 700;
   color: rgba(var(--text-main-btns));
+  margin: 0;
+}
+.purpleBtn:hover {
+  background-color: rgba(var(--add-btn-h));
 }
