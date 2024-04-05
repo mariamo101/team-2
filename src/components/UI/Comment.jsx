@@ -1,7 +1,8 @@
+import styles from '../../styles/Comment.module.css'
 // Comment component
 const Comment = ({ comment }) => {
   return (
-    <article className="px-8">
+    <article className={`px-8 ${styles.animation}`}>
       <div className="flex items-center justify-between flex-wrap">
         <div className="flex gap-3 items-center md:gap-8">
           <img

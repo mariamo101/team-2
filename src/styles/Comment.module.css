@@ -1,0 +1,14 @@
+.animation{
+    animation-name: slidein;
+    animation-duration: .4s;
+    animation-iteration-count: 1;
+}
+@keyframes slidein {
+    from {
+      transform: translateY(100%);
+    }
+  
+    to {
+      transform: translateY(0%);
+    }
+  }

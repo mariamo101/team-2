@@ -36,8 +36,8 @@ function FeedBack() {
   // Effect hook to fetch and set feedback data
   useEffect(() => {
     // Find product data based on id
-    const filtered = productData.filter((product) => product.id === +id);
-
+    const filtered = productData.filter((product) => product.id === +id)[0];
+    console.log(filtered);
 
     // Redirect to main page if no data found
     if (!filtered) {
@@ -109,7 +109,7 @@ function FeedBack() {
           </main>
         </Row>
         <Row>
-          <FeedbackMessageContainer />
+          <FeedbackMessageContainer feedbackId={id}/>
         </Row>
       </Container>
     </div>

@@ -3,7 +3,8 @@ import { useForm } from "react-hook-form";
 import { useContext } from "react";
 import { FeedbackContext } from "../../store/feedback-context";
 
-const FeedbackMessageContainer = () => {
+const FeedbackMessageContainer = ({feedbackId}) => {
+  console.log(feedbackId);
   // Destructuring useForm hook and extracting required methods and states
   const {
     register, // To register form inputs
@@ -21,9 +22,9 @@ const FeedbackMessageContainer = () => {
   // Function to handle form submission
   const onSubmit = async (data) => {
     setComment(
-      5, // ID of the feedback where you want to add the comment
-      5, // ID of the comment
-      "abdaubda", // Content of the comment
+      +feedbackId, // ID of the feedback where you want to add the comment
+      Math.floor(Math.random() * Date.now), // ID of the comment
+      userValue, // Content of the comment
       {
         image: "/assets/user-images/image-elijah.jpg",
         name: "Elijah Moss",

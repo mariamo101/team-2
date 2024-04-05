@@ -1,7 +1,8 @@
+import styles from '../../styles/Comment.module.css'
 // Reply component
 const Reply = ({ reply }) => {
   return (
-    <article className="pl-20 pr-8">
+    <article className={`pl-20 pr-8 ${styles.animation}`}>
       <div className="flex items-center justify-between flex-wrap">
         <div className="flex gap-3 items-center md:gap-8">
           <img
