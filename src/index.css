@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -28,6 +28,7 @@
 
   /* for white texts */
   --text-white: 255, 255, 255;
+  --text-main-btns: 242, 244, 254;
 
   /* For not white texts in header: sort by color */
   --text-secondary: 242, 244, 254;
@@ -40,7 +41,7 @@
   --sm-btn-bg-a: 70, 97, 230;
   --sm-btn-bg-h: 207, 215, 255;
 
-  --sm-btn-txt: 207, 235, 255;
+  --sm-btn-txt: 70, 97, 230;
   --sm-btn-txt-a: 255, 255, 255;
 
   /* RoadMap */

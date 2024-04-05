@@ -1,3 +1,11 @@
-export default function FeedBacks() {
-  return <div>Feedbacks</div>;
+import FeedBackBoard from "../components/feedbackboard/FeedBackBoard";
+
+function FeedBacks() {
+  return (
+    <div>
+      <FeedBackBoard />
+    </div>
+  );
 }
+
+export default FeedBacks;
