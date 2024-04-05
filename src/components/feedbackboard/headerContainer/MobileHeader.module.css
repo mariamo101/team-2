@@ -1,0 +1,29 @@
+.blueCont {
+  width: 100%;
+  padding: 0.5rem;
+  background-color: rgba(var(--header-bg));
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 22.5rem;
+}
+
+.sortSelect {
+  width: 12rem;
+  display: inline-flex;
+  align-items: center;
+}
+.sort {
+  color: rgba(var(--text-main-btns));
+  font-size: 0.8125rem;
+  font-weight: 400;
+}
+.selectOption {
+  color: rgba(var(--text-main-btns));
+  background-color: transparent;
+  border: none;
+  outline: none;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  width: 67%;
+}

@@ -27,7 +27,15 @@ function NewFeedBackForm() {
 
   //Adding product to to the list and resetting inputs
   function handleAddProduct(data) {
-    setProduct(1, data.title, data.category, 0, "suggestion", data.description, []);
+    setProduct(
+      Math.floor(Date.now() * Math.random()),
+      data.title,
+      data.category,
+      0,
+      "suggestion",
+      data.description,
+      []
+    );
     reset();
   }
   return (
