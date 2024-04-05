@@ -3,14 +3,14 @@ h2 {
   margin: 0;
 }
 .gradientBoard {
-  background-image: url(../../../../public/assets/suggestions/mobile/background-header.png);
+  background-image: url(/assets/suggestions/mobile/background-header.png);
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 1rem 0.94rem 1rem;
-  min-width: 22.5rem;
+  /* min-width: 22.5rem; */
 }
 h1 {
   color: rgba(var(--text-white));

@@ -1,0 +1,48 @@
+.roadBoard {
+  padding: 1.19rem 1.5rem 1.5rem 1.5rem;
+  border-radius: 0.625rem;
+  background: rgba(var(--container-bg));
+}
+.roadTitle {
+  color: rgba(var(--title));
+  font-size: 1.125rem;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.69rem;
+}
+.view {
+  margin: 0;
+  padding: 0;
+  font-size: 0.8125rem;
+  font-weight: 600;
+}
+.planned,
+.InProgress,
+.Live {
+  margin: 0;
+  color: rgba(var(--paragraph));
+}
+.roadSpans {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.statusContainer {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+.roadMap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.roadNums {
+  font-weight: 700;
+  color: rgba(var(--road-nums));
+}
+.view:hover {
+  color: rgba(var(--view-h));
+}

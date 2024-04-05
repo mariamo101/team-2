@@ -16,6 +16,7 @@ export default function GradientBoard() {
         <h2>Feedback Board</h2>
       </div>
       <img
+        style={{ cursor: "pointer" }}
         src={manu ? close : hamburger}
         alt={manu ? "Manu Close" : "Manu"}
         onClick={toggleMenu}
