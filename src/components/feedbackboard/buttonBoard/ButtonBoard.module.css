@@ -1,0 +1,5 @@
+.buttonBoard {
+  border-radius: 0.625rem;
+  background: rgba(var(--text-white));
+  padding: 1.5rem;
+}
