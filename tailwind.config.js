@@ -4,6 +4,7 @@ export default {
   theme: {
     extend: {
       colors: {
+        bodyC: "rgba(var(--body-color))",
         title: "rgba(var(--title))",
         titleH: "rgba(var(--title-h))",
         paragraph: "rgba(var(--paragraph))",
