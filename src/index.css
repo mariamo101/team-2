@@ -142,5 +142,5 @@
 }
 
 body {
-  background-color: rgba(var(--body-color));
+  background-color: rgba(var(--body-color)) !important;
 }
