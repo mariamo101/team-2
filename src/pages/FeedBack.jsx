@@ -32,17 +32,34 @@ function FeedBack() {
   // Navigation hook
   const navigate = useNavigate();
 
+  // State for total length of comments
+  const [totalLength, setTotalLength] = useState(0);
+
   // Effect hook to fetch and set feedback data
   useEffect(() => {
-    // Filter product data based on id
-    const filtered = productData.filter(product => product.id === +id)[0];
+    // Find product data based on id
+    const filtered = productData.filter((product) => product.id === +id)[0];
 
     // Redirect to main page if no data found
-    if (!filtered) return navigate("/");
+    if (!filtered) {
+      navigate("/");
+      return;
+    }
 
     // Set feedback data to state
     setFeedback(filtered);
-  }, []);
+
+
+    // Calculate total length of comments
+    const getLength = filtered?.comments?.reduce((acc, comment) => {
+      if (comment.replies) {
+        return acc + comment.replies.length + 1; // Adding 1 for the original comment
+      } else {
+        return acc + 1; // Adding 1 for the comment itself
+      }
+    }, 0);
+    setTotalLength(getLength);
+  }, [id,productData]);
 
   // Get Comments Quantity
   const totalLength = feedback?.comments?.reduce((acc, comment) => {
@@ -53,6 +70,7 @@ function FeedBack() {
     }
   }, 0);
 
+
   return (
     <div className="bg-bodyC p-6 min-h-screen">
       <Container>
@@ -60,19 +78,21 @@ function FeedBack() {
           {/* Header */}
           <header className="flex items-center justify-between mb-[24px]">
             {/* Navigation */}
-            <nav className="flex items-center gap-[15px]">
+            <nav className="flex items-center gap-[15px] cursor-pointer">
               <img src={leftArrow} alt="left arrow" />
-              <span className="text-title">Go Back</span>
+              <span className="text-title " onClick={()=>navigate(-1)}>Go Back</span>
             </nav>
             {/* Edit Feedback button */}
-            <button className="py-[10.5px] px-[16px] bg-addBtn hover:bg-addBtnH rounded-[10px] text-textWhite text-[.8125rem]">
+            <button className="py-[10.5px] px-[16px] bg-addBtn hover:bg-addBtnH rounded-[10px] text-textWhite text-[.8125rem]"
+            onClick={()=>navigate(`/edit-feedback/${id}`)}
+            >
               Edit Feedback
             </button>
           </header>
         </Row>
         <Row>
           {/* Feedback Container */}
-          <FeedbackContainer {...feedback} />
+          <FeedbackContainer {...feedback} commentsLength={totalLength}/>
         </Row>
         <Row>
           <main className="my-5 bg-containerBg rounded-lg p-6">
@@ -99,7 +119,7 @@ function FeedBack() {
           </main>
         </Row>
         <Row>
-          <FeedbackMessageContainer />
+          <FeedbackMessageContainer feedbackId={id}/>
         </Row>
       </Container>
     </div>
