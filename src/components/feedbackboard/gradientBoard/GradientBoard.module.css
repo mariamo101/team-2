@@ -3,7 +3,7 @@ h2 {
   margin: 0;
 }
 .gradientBoard {
-  background-image: url(../../../../assets/suggestions/mobile/background-header.png);
+  background-image: url(../../../../public/assets/suggestions/mobile/background-header.png);
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;

@@ -1,4 +1,5 @@
-.feedbackBtn {
+.purpleBtn {
+  border: none;
   border-radius: 0.625rem;
   background: rgba(var(--purple));
   padding: 0.66rem 1rem;
