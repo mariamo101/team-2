@@ -1,0 +1,7 @@
+.sidebar {
+  margin: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-content: flex-end;
+}
