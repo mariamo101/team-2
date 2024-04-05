@@ -1,8 +1,10 @@
 /* eslint-disable */
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 // Import SVG files
 import upArrow from "/assets/shared/icon-arrow-up.svg";
 import commentsSvg from "/assets/shared/icon-comments.svg";
+import { useContext, useEffect, useState } from "react";
+import { FeedbackContext } from "../../store/feedback-context";
 
 // User Feedback Container Component
 function FeedbackContainer({
@@ -13,20 +15,29 @@ function FeedbackContainer({
   upvotes,
   comments,
   status,
+  commentsLength,
   isRoadMap = false,
 }) {
+  const [totalLength, setTotalLength] = useState(0);
   const navigate = useNavigate();
   // Ensure comments array is initialized
-  const allComments = comments || [];
 
   // Calculate total length of comments and replies
-  const totalLength = allComments.reduce((acc, comment) => {
-    if (comment.replies) {
-      return acc + comment?.replies.length;
-    } else {
-      return acc + comments?.length;
-    }
-  }, 0);
+
+  const { productData } = useContext(FeedbackContext);
+  useEffect(() => {
+    // Filter product data based on id
+    const filtered = productData.find((product) => product.id === +id);
+    const getLength = filtered?.comments?.reduce((acc, comment) => {
+      if (comment.replies) {
+        return acc + comment.replies.length + 1; // Adding 1 for the original comment
+      } else {
+        return acc + 1; // Adding 1 for the comment itself
+      }
+    }, 0);
+
+    setTotalLength(getLength);
+  }, []);
 
   // Get Status Colors
   const getColor =
@@ -63,9 +74,14 @@ function FeedbackContainer({
             </span>
           </button>
           {/* Feedback details and Redirect to edit page*/}
-          <div className='cursor-pointer' onClick={()=>{navigate(`/edit-feedback/${id}`)}}>
+          <div
+            className="cursor-pointer"
+            onClick={() => {
+              navigate(`/edit-feedback/${id}`);
+            }}
+          >
             <h1 className="text-title text-[.8125rem] font-bold">{title}</h1>
-            <p className='text-paragraph'>{description}</p>
+            <p className="text-paragraph">{description}</p>
             <button className="bg-[#F2F4FE] text-[#4661E6] px-[13px] py-[6px] rounded-[10px] mb-[14px]">
               {category}
             </button>
@@ -83,7 +99,7 @@ function FeedbackContainer({
           {/* Comments count */}
           <div className="flex items-center gap-2">
             <img src={commentsSvg} alt="comments" />
-            <span>{totalLength}</span>
+            <span>{commentsLength ? commentsLength : totalLength | 0}</span>
           </div>
         </div>
       </div>
