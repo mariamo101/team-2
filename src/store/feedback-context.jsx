@@ -4,6 +4,7 @@ export const FeedbackContext = createContext({
   productData: [],
   setProduct: () => {},
   setComment: () => {},
+  editProductData: () => {},
 });
 
 export default function FeedbackContextProvider({ children }) {
@@ -23,13 +24,8 @@ export default function FeedbackContextProvider({ children }) {
     ]);
   }
 
-
-
-
-
-
-
- function setComment(feedbackId, commentId, content, user) {
+  // add comment in feedback user object
+  function setComment(feedbackId, commentId, content, user) {
     setProductData((prevData) => {
       return prevData.map((feedback) => {
         if (feedback.id === feedbackId) {
@@ -45,12 +41,24 @@ export default function FeedbackContextProvider({ children }) {
         return feedback; // Return unchanged feedback if ID doesn't match
       });
     });
-    console.log(productData);
+  }
+  // edit feedback user product data
+  function editProductData(id, title, category, status, description) {
+    const updatedProductData = productData.map((product) => {
+      if (product.id === +id) {
+        return { ...product, title, category, status, description };
+      }
+
+      return product;
+    });
+
+    setProductData(updatedProductData);
   }
 
-
   return (
-    <FeedbackContext.Provider value={{ productData, setProduct, setComment }}>
+    <FeedbackContext.Provider
+      value={{ productData, setProduct, editProductData, setComment }}
+    >
       {children}
     </FeedbackContext.Provider>
   );
