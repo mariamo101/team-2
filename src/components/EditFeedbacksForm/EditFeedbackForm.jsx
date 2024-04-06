@@ -32,7 +32,7 @@ function EditFeedbackForm({product}) {
     <form className={styles.form} onSubmit={handleSubmit(handleEditProduct)}>
       {/* Title input field */}
       <fieldset>
-        <h5 className={styles.title}>Feedback Title</h5>
+        <p className={styles.label}>Feedback Title</p>
         <p className={styles.paragraph}>Add a short, descriptive headline</p>
         <input
           className={`${styles.input} ${errors.title ? styles.errorBorder : ""}`}
@@ -44,7 +44,7 @@ function EditFeedbackForm({product}) {
 
       {/* Category selection */}
       <fieldset>
-        <h5 className={styles.title}>Category</h5>
+        <p className={styles.label}>Category</p>
         <p className={styles.paragraph}>Choose a category</p>
         <select {...register("category", {required: "You must select a category"})}>
           {categories.map((item, index) => (
@@ -57,7 +57,7 @@ function EditFeedbackForm({product}) {
 
       {/* Status selection */}
       <fieldset>
-        <h5 className={styles.title}>Update Status</h5>
+        <p className={styles.label}>Update Status</p>
         <p className={styles.paragraph}>Change feature state</p>
         <select {...register("status", {required: "You must select a status"})}>
           {statuses.map((item, index) => (
@@ -71,7 +71,7 @@ function EditFeedbackForm({product}) {
       {/* Description textarea */}
       <fieldset>
         <label htmlFor="description" className={styles.label}>
-          Feedback Description
+          Feedback Detail
         </label>
         <p className={styles.paragraph}>
           Include any specific comments on what should be improved, added, etc.
@@ -82,6 +82,24 @@ function EditFeedbackForm({product}) {
         />
         {errors.description && <p className={styles.error}>{errors.description.message}</p>}
       </fieldset>
+
+      {/* Container for buttons */}
+      <div className={styles.buttonsContainer}>
+        <div className={styles.right}>
+          <button className={styles.addBtn} type="submit">
+            Add Feedback
+          </button>
+        </div>
+
+        <div className={styles.left}>
+          <button type="button" className={styles.deleteBtn}>
+            Delete
+          </button>
+          <button type="button" className={styles.cancel}>
+            Cancel
+          </button>
+        </div>
+      </div>
     </form>
   );
 }

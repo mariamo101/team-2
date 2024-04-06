@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "./MainButton.module.css";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 
-export default function MainButton({ text }) {
+export default function MainButton({text}) {
   return (
     <>
       <Link to="/new-feedback">
