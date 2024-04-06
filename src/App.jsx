@@ -9,6 +9,7 @@ const Feedback = lazy(() => import("./pages/FeedBack"));
 const NewFeedback = lazy(() => import("./pages/NewFeedback"));
 const EditFeedback = lazy(() => import("./pages/EditFeedBack"));
 const Roadmap = lazy(() => import("./pages/RoadMap"));
+const PageNotFound = lazy(() => import("./pages/PageNotFound"));
 
 function App() {
   return (
@@ -22,7 +23,7 @@ function App() {
           <Route path="/new-feedback" element={<NewFeedback />} />
           <Route path="/edit-feedback/:id" element={<EditFeedback />} />
           <Route path="/roadmap" element={<Roadmap />} />
-          <Route path="*" element={<p>Page Not Found</p>} />
+          <Route path="*" element={<PageNotFound />} />
         </Routes>
       </Suspense>
     </Router>
