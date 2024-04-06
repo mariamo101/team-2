@@ -130,10 +130,10 @@ function RoadMap() {
         <Row>
           {statuses.map((item) => (
             <Col lg="4" xs="4" className="mt-3 hidden tablet:block">
-              <h1 className="w-fit text-title text-[1.1rem] font-bold">
-                {item.name}
-              </h1>
-              <p className="text-[.9rem] text-paragraph">{item.process}</p>
+              <a href={`#${item.value}`} className="no-underline w-fit text-title text-[1.1rem] font-bold">
+                  {item.name}
+              </a>
+                <p className="text-[.9rem] text-paragraph">{item.process}</p>
             </Col>
           ))}
         </Row>
@@ -141,21 +141,26 @@ function RoadMap() {
           <Col lg="4" md="12">
             {planned &&
               planned.map((item) => (
-                <>
+                <div id="#planned">
                   <RoadMapFilter feedback={item} />
-                </>
+                </div>
               ))}
           </Col>
           <Col lg="4" md="12">
             {progress &&
               progress.map((item) => (
-                <>
+                <div id="in-progress">
                   <RoadMapFilter feedback={item} />
-                </>
+                </div>
               ))}
           </Col>
           <Col lg="4" md="12">
-            {live && live.map((item) => <RoadMapFilter feedback={item} />)}
+            {live &&
+              live.map((item) => (
+                <div id="live">
+                  <RoadMapFilter feedback={item} />
+                </div>
+              ))}
           </Col>
         </Row>
       </Container>
