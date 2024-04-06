@@ -2,11 +2,12 @@ import {useContext} from "react";
 import {FeedbackContext} from "../../store/feedback-context";
 import {useForm} from "react-hook-form";
 import {Link} from "react-router-dom";
-
+import {useNavigate} from "react-router-dom";
 import styles from "./NewFeedBackForm.module.css";
 
 function NewFeedBackForm() {
   const {productData, setProduct} = useContext(FeedbackContext);
+  const navigate = useNavigate();
 
   // Setting Form for sending data
   const {
@@ -37,6 +38,12 @@ function NewFeedBackForm() {
       []
     );
     reset();
+    navigate("/");
+  }
+
+  function handleCancel() {
+    reset();
+    navigate("/");
   }
   return (
     <form className={styles.form} onSubmit={handleSubmit(data => handleAddProduct(data))}>
@@ -85,11 +92,11 @@ function NewFeedBackForm() {
       </fieldset>
       <div className={styles.buttonsContainer}>
         <button className={styles.addBtn} type="submit">
-          Submit
+          Add Feedback
         </button>
-        <Link className={styles.cancel} to="/">
-          <button>Cancel</button>
-        </Link>
+        <button type="button" className={styles.cancel} onClick={() => handleCancel()}>
+          Cancel
+        </button>
       </div>
     </form>
   );
