@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { createContext, useState } from "react";
 import feedbacksData from "../data.json";
 export const FeedbackContext = createContext({
@@ -7,12 +8,12 @@ export const FeedbackContext = createContext({
   editProductData: () => {},
   changeUpVotes: () => {},
   setReplies: () => {},
+  removeProduct:()=>{},
 });
 
 export default function FeedbackContextProvider({ children }) {
   const [productData, setProductData] = useState(feedbacksData.productRequests);
   const [mainData, setMainData] = useState(feedbacksData.currentUser);
-  console.log(mainData);
 
   function setProduct(
     id,
@@ -27,6 +28,10 @@ export default function FeedbackContextProvider({ children }) {
       ...prev,
       { id, title, category, upvotes, status, description, comments },
     ]);
+  }
+  function removeProduct(feedbackId){
+    const filtered = productData.filter(product=> product.id !== feedbackId)
+    setProductData(filtered)
   }
 
   // add comment in feedback user object
@@ -118,9 +123,9 @@ export default function FeedbackContextProvider({ children }) {
 
     // Update the productData with the updated comments
     // You may need to setProductData(updatedProductData) here depending on your application logic
-    console.log(updatedProductData);
     setProductData(updatedProductData)
   }
+  
 
   return (
     <FeedbackContext.Provider
@@ -131,6 +136,7 @@ export default function FeedbackContextProvider({ children }) {
         setComment,
         changeUpVotes,
         setReplies,
+        removeProduct,
       }}
     >
       {children}
