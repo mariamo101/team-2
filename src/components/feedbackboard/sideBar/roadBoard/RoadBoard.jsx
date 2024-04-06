@@ -6,7 +6,9 @@ export default function () {
     <div className={styles.roadBoard}>
       <h1 className={styles.roadTitle}>
         Roadmap
-        <Link className={styles.view}>view</Link>
+        <Link to="/roadmap" className={styles.view}>
+          view
+        </Link>
       </h1>
       <div className={styles.roadMap}>
         <div className={styles.roadSpans}>
