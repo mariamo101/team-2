@@ -1,7 +1,14 @@
+import { useState } from "react";
 import styles from "../../styles/Comment.module.css";
+import FeedbackReplyContainer from "./FeedbackReplyContainer";
 // Reply component
-const Reply = ({ reply }) => {
-  console.log(reply);
+const Reply = ({ comment, reply }) => {
+  const [isReply, setIsReply] = useState(false);
+
+  function toggleReply() {
+    setIsReply((prev) => !prev);
+  }
+  
   return (
     <article className={`pl-20 pr-8 w-full ${styles.animation}`}>
       <div className="flex items-center justify-between flex-wrap">
@@ -20,7 +27,7 @@ const Reply = ({ reply }) => {
             </p>
           </div>
         </div>
-        <button className="text-[#4661E6] text-[.8125rem] font-semibold">
+        <button  onClick={toggleReply} className="text-[#4661E6] text-[.8125rem] font-semibold">
           Reply
         </button>
       </div>
@@ -30,6 +37,9 @@ const Reply = ({ reply }) => {
         </span>{" "}
         {reply.content}
       </p>
+      {isReply && (
+        <FeedbackReplyContainer comment={comment} reply={reply.user?.username} toggleReply={toggleReply} />
+      )}
     </article>
   );
 };

@@ -102,7 +102,7 @@ function FeedBack() {
                       <div
                         className={`w-[0.7px] h-[150%] bg-[#647196] opacity-[.1] absolute bottom-0 left-[51px]`}
                       />
-                      <Reply key={reply.id} reply={reply} />
+                      <Reply key={reply.id} comment={comment} reply={reply}  />
                     </div>
                   ))}
                 {index !== feedback?.comments?.length - 1 && <hr />}

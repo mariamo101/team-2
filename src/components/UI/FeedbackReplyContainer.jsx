@@ -3,7 +3,11 @@ import styles from "../../styles/Comment.module.css";
 import { useForm } from "react-hook-form";
 import { FeedbackContext } from "../../store/feedback-context";
 import { useContext } from "react";
-export default function FeedbackReplyContainer({comment,toggleReply}) {
+export default function FeedbackReplyContainer({
+  comment,
+  reply,
+  toggleReply,
+}) {
   const {
     register, // To register form inputs
     handleSubmit, // To handle form submission
@@ -17,7 +21,11 @@ export default function FeedbackReplyContainer({comment,toggleReply}) {
 
   const { setReplies } = useContext(FeedbackContext);
   const onSubmit = async (data) => {
-    setReplies(comment?.id, commentValue, comment?.user?.username);
+    setReplies(
+      comment?.id,
+      commentValue,
+      reply ? reply : comment?.user?.username
+    );
     toggleReply();
   };
 
