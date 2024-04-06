@@ -29,3 +29,22 @@
 .feedBackContainer {
   margin: 0 1.5rem 1rem 1.5rem;
 }
+.noFeedback {
+  border-radius: 0.625rem;
+  margin: 0 1.5rem 2.94rem 1.5rem;
+  background-color: rgba(var(--container-bg));
+  padding: 4.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.noFeedbackYet {
+  text-align: center;
+  color: rgba(var(--title));
+  margin-top: 2.44rem;
+}
+.noFeedbackP {
+  text-align: center;
+  color: rgba(var(--paragraph));
+  margin-top: 0.87rem;
+}
