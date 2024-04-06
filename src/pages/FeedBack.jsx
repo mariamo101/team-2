@@ -83,7 +83,7 @@ function FeedBack() {
         </Row>
         <Row>
           <main className="my-5 bg-containerBg rounded-lg p-6">
-            <h4 className="text-title text-[18px] font-bold tracking-[0.25px] pl-6">
+            <h4 className="text-title text-[18px] font-bold tracking-[0.25px] pl-6 mb-6 sm:mb-7">
               {!feedback?.comments?.length
                 ? "No Comments yet"
                 : `${totalLength} Comments`}
