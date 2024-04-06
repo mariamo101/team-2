@@ -16,3 +16,11 @@
     min-width: 13rem;
   }
 }
+@media screen and (min-width: 48rem) {
+  .buttonBoard {
+    width: 77%;
+    max-width: 53.75rem;
+    border-radius: 0.625rem;
+    min-width: 13rem;
+  }
+}

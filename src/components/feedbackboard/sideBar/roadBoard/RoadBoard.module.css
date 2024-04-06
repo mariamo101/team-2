@@ -53,3 +53,9 @@
     height: 11.125rem;
   }
 }
+@media screen and (min-width: 48rem) {
+  .roadBoard {
+    width: 79%;
+    height: 11.125rem;
+  }
+}

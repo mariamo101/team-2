@@ -50,9 +50,6 @@
   margin-top: 0.87rem;
 }
 @media screen and (min-width: 48rem) {
-  /* .noFeedback {
-    padding: 0 7rem 5rem;
-  } */
   .noFeedbackYet {
     letter-spacing: -0.02081rem;
     font-size: 1.5rem;
