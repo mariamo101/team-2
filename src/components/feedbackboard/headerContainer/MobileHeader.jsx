@@ -3,7 +3,7 @@ import MainButton from "../mainButton/MainButton";
 import GradientBoard from "../gradientBoard/GradientBoard";
 export default function MobileHeader() {
   return (
-    <div className="flex w-full flex-col md:hidden">
+    <div className="flex w-full flex-col lg:hidden">
       <GradientBoard />
       <div className={styles.blueCont}>
         <form className={styles.sort}>

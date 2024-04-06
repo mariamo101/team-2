@@ -2,6 +2,7 @@
   padding: 1.19rem 1.5rem 1.5rem 1.5rem;
   border-radius: 0.625rem;
   background: rgba(var(--container-bg));
+  width: 95%;
 }
 .roadTitle {
   color: rgba(var(--title));
@@ -45,4 +46,10 @@
 }
 .view:hover {
   color: rgba(var(--view-h));
+}
+@media screen and (min-width: 48rem) {
+  .roadBoard {
+    width: 40%;
+    height: 11.125rem;
+  }
 }

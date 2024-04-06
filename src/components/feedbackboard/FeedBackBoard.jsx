@@ -10,10 +10,12 @@ import MainButton from "./mainButton/MainButton";
 const FeedBackBoard = () => {
   const { productData } = useContext(FeedbackContext);
   console.log(productData);
-  if (productData.length === 12) {
+  if (productData.length === 0) {
     return (
       <>
-        <MobileHeader />
+        <div>
+          <MobileHeader />
+        </div>
         <Container>
           <div className={styles.noFeedback}>
             <img src={emptyFeedback} alt="Empty Feedbacks" />
@@ -39,7 +41,6 @@ const FeedBackBoard = () => {
           </Container>
         ))}
       </div>
-      <SideBar />
     </>
   );
 };
