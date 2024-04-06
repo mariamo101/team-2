@@ -13,7 +13,7 @@ export default function () {
     setMenu((prew) => setMenu(!prew));
   };
   return (
-    <div className={styles.tabletBar}>
+    <div className={`${styles.tabletBar} flex-col`}>
       <div className={styles.gradientBoard}>
         <div>
           <h1>Frontend Mentor</h1>
@@ -28,7 +28,8 @@ export default function () {
         />
         {menu && <SideBar menu={menu} toggleMenu={toggleMenu} />}
       </div>
-      <div className="hidden md:flex  justify-around  desktop:flex-wrap">
+
+      <div className={styles.board}>
         <ButtonBoard />
         <RoadBoard />
       </div>

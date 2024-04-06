@@ -1,6 +1,5 @@
 import styles from "./MobileHeader.module.css";
 import MainButton from "../mainButton/MainButton";
-import GradientBoard from "../gradientBoard/GradientBoard";
 import suggestion from "/assets/suggestions/icon-suggestions.svg";
 export default function MobileHeader() {
   return (

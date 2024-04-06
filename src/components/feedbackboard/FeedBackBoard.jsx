@@ -7,7 +7,7 @@ import { Container, Row, Col } from "reactstrap";
 import emptyFeedback from "/assets/suggestions/illustration-empty.svg";
 import MainButton from "./mainButton/MainButton";
 import GradientBoard from "./gradientBoard/GradientBoard";
-// import GradiantColuns from "./gradientBoard/desktopRow/GradiantColuns";
+import GradiantColuns from "./gradientBoard/desktopRow/GradiantColuns";
 
 const FeedBackBoard = () => {
   const { productData } = useContext(FeedbackContext);
@@ -15,9 +15,6 @@ const FeedBackBoard = () => {
   if (productData.length === 0) {
     return (
       <>
-        {/* <div>
-          <MobileHeader />
-        </div> */}
         <Container>
           <div className={styles.noFeedback}>
             <img src={emptyFeedback} alt="Empty Feedbacks" />
@@ -34,26 +31,22 @@ const FeedBackBoard = () => {
   }
   return (
     <>
-      <GradientBoard />
-      <MobileHeader />
-
-      <Container>
-        <Row>
-          {/* <div className="hidden tablet:block"> */}
-          <Col lg="3">{/* <GradientBoard /> */}</Col>
-          {/* </div> */}
-          <Col lg="12">
-            <div>
-              {productData.map((product) => (
-                <Container key={Math.floor(Math.random() * Date.now())}>
-                  <FeedbackContainer {...product} />
-                  <div className="mb-5" />
-                </Container>
-              ))}
-            </div>
-          </Col>
-        </Row>
-      </Container>
+      <Row className="place-content-center">
+        <Col lg="3">
+          <GradiantColuns />
+        </Col>
+        <Col lg="7" md="12">
+          <MobileHeader />
+          <div>
+            {productData.map((product) => (
+              <Container key={Math.floor(Math.random() * Date.now())}>
+                <FeedbackContainer {...product} />
+                <div className="mb-5" />
+              </Container>
+            ))}
+          </div>
+        </Col>
+      </Row>
     </>
   );
 };

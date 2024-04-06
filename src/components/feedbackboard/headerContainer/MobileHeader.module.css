@@ -46,8 +46,7 @@ select {
 @media screen and (min-width: 48rem) {
   .blueCont {
     margin: 0 auto 1.5rem auto;
-    width: 75%;
-    max-width: 53.75rem;
+    max-width: 43.75rem;
     border-radius: 0.625rem;
   }
   .headerSuggestions {
@@ -63,6 +62,11 @@ select {
     font-size: 1.125rem;
     font-weight: 700;
     letter-spacing: -0.01563rem;
+  }
+}
+@media screen and (min-width: 62rem) {
+  .blueCont {
+    margin-top: 2.5rem;
   }
 }
 @media screen and (min-width: 90rem) {
