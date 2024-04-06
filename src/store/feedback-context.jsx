@@ -9,6 +9,7 @@ export const FeedbackContext = createContext({
   changeUpVotes: () => {},
   setReplies: () => {},
   removeProduct:()=>{},
+  getFeedbacksByName:()=>{}
 });
 
 export default function FeedbackContextProvider({ children }) {
@@ -126,7 +127,10 @@ export default function FeedbackContextProvider({ children }) {
     setProductData(updatedProductData)
   }
   
-
+  function getFeedbacksByName(name){
+    const filtered = productData.filter(product=> product.status === name)
+    return filtered
+  }
   return (
     <FeedbackContext.Provider
       value={{
@@ -137,6 +141,7 @@ export default function FeedbackContextProvider({ children }) {
         changeUpVotes,
         setReplies,
         removeProduct,
+        getFeedbacksByName,
       }}
     >
       {children}
