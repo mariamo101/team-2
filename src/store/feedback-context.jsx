@@ -21,7 +21,6 @@ export default function FeedbackContextProvider({children}) {
       {id, title, category, upvotes, status, description, comments},
     ]);
   }
-  // Remove Product from Page
   function removeProduct(feedbackId) {
     const filtered = productData.filter(product => product.id !== feedbackId);
     setProductData(filtered);

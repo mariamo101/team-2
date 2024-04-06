@@ -1,5 +1,5 @@
 import styles from "./EditFeedbackForm.module.css";
-import {useContext} from "react";
+import {useContext, useEffect} from "react";
 import {FeedbackContext} from "../../store/feedback-context";
 import {useForm} from "react-hook-form";
 import {useParams, useNavigate} from "react-router-dom";
@@ -36,12 +36,12 @@ function EditFeedbackForm({product}) {
   const {id} = useParams();
 
   function handleDelete() {
-    removeProduct(+id);
-
-    // navigate(-1);
+    removeProduct(1);
   }
 
-  console.log(productData);
+  useEffect(() => {
+    console.log(productData);
+  }, [productData]);
 
   function handleEditProduct(data) {
     editProductData({id, ...data});
