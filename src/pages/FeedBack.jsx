@@ -2,6 +2,8 @@
 // React imports
 import {useNavigate, useParams} from "react-router";
 import {useContext, useEffect, useState} from "react";
+
+
 import {FeedbackContext} from "../store/feedback-context";
 
 // Reactstrap imports
@@ -46,6 +48,7 @@ function FeedBack() {
 
     // Set feedback data to state
     setFeedback(filtered);
+
 
     // Calculate total length of comments
     const getLength = filtered?.comments?.reduce((acc, comment) => {
@@ -94,7 +97,7 @@ function FeedBack() {
 
                 {/* Render replies */}
                 {comment.replies &&
-                  comment.replies.map((reply) => (
+                  comment.replies.map(reply => (
                     <div className="flex relative h-full">
                       <div
                         className={`w-[0.7px] h-[150%] bg-[#647196] opacity-[.1] absolute bottom-0 left-[51px]`}
