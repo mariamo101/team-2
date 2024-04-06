@@ -3,7 +3,7 @@ import { Container, Row, Col } from "reactstrap";
 // Button for feedback
 import MainButton from "../components/feedbackboard/mainButton/MainButton";
 import { useEffect, useState, useContext } from "react";
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 // styles
 import styles from "../styles/RoadMap.module.css";
 import RoadMapFilter from "../components/UI/RoadMapFilter";
@@ -42,12 +42,12 @@ function RoadMap() {
   const [progress, setProgress] = useState(null);
   const [live, setLive] = useState(null);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   useEffect(() => {
     const filteredNames = statuses.filter((item) => item.id === stateNum)[0]
       .value;
     setProducts(getFeedbacksByName(filteredNames));
-    
+
     setPlanned(getFeedbacksByName("planned"));
     setProgress(getFeedbacksByName("in-progress"));
     setLive(getFeedbacksByName("live"));
@@ -72,7 +72,9 @@ function RoadMap() {
                     fill-rule="evenodd"
                   />
                 </svg>
-                <span className=" font-bold"  onClick={()=>navigate(-1)}>Go Back</span>
+                <span className=" font-bold" onClick={() => navigate(-1)}>
+                  Go Back
+                </span>
               </div>
               <p className="m-0 tracking-[-0.25px] font-bold">Roadmap</p>
             </Col>
@@ -126,44 +128,35 @@ function RoadMap() {
       </Container>
       <Container className="hidden tablet:block">
         <Row>
-          {statuses.map((item) => {
-            console.log(item);
-            return(<Col lg="4" xs="4" className="mt-3 hidden tablet:block">
+          {statuses.map((item) => (
+            <Col lg="4" xs="4" className="mt-3 hidden tablet:block">
               <h1 className="w-fit text-title text-[1.1rem] font-bold">
                 {item.name}
               </h1>
               <p className="text-[.9rem] text-paragraph">{item.process}</p>
-            </Col>)
-              })}
+            </Col>
+          ))}
         </Row>
         <Row>
-        
-          <Col lg='4' sm='4'>
-            {
-              planned && planned.map((item)=>(
+          <Col lg="4" md="12">
+            {planned &&
+              planned.map((item) => (
                 <>
-                <RoadMapFilter feedback={item} />
+                  <RoadMapFilter feedback={item} />
                 </>
-              ))
-            }
+              ))}
           </Col>
-          <Col lg='4' sm='4'>
-            {
-              progress && progress.map((item)=>(
+          <Col lg="4" md="12">
+            {progress &&
+              progress.map((item) => (
                 <>
-                <RoadMapFilter feedback={item} />
+                  <RoadMapFilter feedback={item} />
                 </>
-              ))
-            }
+              ))}
           </Col>
-          <Col lg='4' sm='4'>
-            {
-              live && live.map((item)=>(
-                <RoadMapFilter feedback={item} />
-              ))
-            }
+          <Col lg="4" md="12">
+            {live && live.map((item) => <RoadMapFilter feedback={item} />)}
           </Col>
-          
         </Row>
       </Container>
     </>
