@@ -10,7 +10,7 @@ import MainButton from "./mainButton/MainButton";
 const FeedBackBoard = () => {
   const { productData } = useContext(FeedbackContext);
   console.log(productData);
-  if (productData.length === 0) {
+  if (productData.length === 12) {
     return (
       <>
         <MobileHeader />
