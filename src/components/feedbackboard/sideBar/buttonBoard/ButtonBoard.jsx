@@ -4,7 +4,7 @@ import SmallButtons from "./SmallButtons";
 
 export default function ButtonBoard() {
   return (
-    <div className={styles.buttonBoard}>
+    <div className={`${styles.buttonBoard} `}>
       <SmallButtons text="All" />
       <SmallButtons text="UI" />
       <SmallButtons text="UX" />
