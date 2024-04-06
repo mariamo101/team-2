@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { createContext, useState } from "react";
+import {createContext, useState} from "react";
 import feedbacksData from "../data.json";
 export const FeedbackContext = createContext({
   productData: [],
@@ -8,44 +8,34 @@ export const FeedbackContext = createContext({
   editProductData: () => {},
   changeUpVotes: () => {},
   setReplies: () => {},
-  removeProduct:()=>{},
+  removeProduct: () => {},
 });
 
-export default function FeedbackContextProvider({ children }) {
+export default function FeedbackContextProvider({children}) {
   const [productData, setProductData] = useState(feedbacksData.productRequests);
   const [mainData, setMainData] = useState(feedbacksData.currentUser);
 
-  function setProduct(
-    id,
-    title,
-    category,
-    upvotes,
-    status,
-    description,
-    comments
-  ) {
-    setProductData((prev) => [
+  function setProduct(id, title, category, upvotes, status, description, comments) {
+    setProductData(prev => [
       ...prev,
-      { id, title, category, upvotes, status, description, comments },
+      {id, title, category, upvotes, status, description, comments},
     ]);
   }
-  function removeProduct(feedbackId){
-    const filtered = productData.filter(product=> product.id !== feedbackId)
-    setProductData(filtered)
+  // Remove Product from Page
+  function removeProduct(feedbackId) {
+    const filtered = productData.filter(product => product.id !== feedbackId);
+    setProductData(filtered);
   }
 
   // add comment in feedback user object
   function setComment(feedbackId, commentId, content, user) {
-    setProductData((prevData) => {
-      return prevData.map((feedback) => {
+    setProductData(prevData => {
+      return prevData.map(feedback => {
         if (feedback.id === feedbackId) {
           // If the feedback matches the specified ID, add the comment
           return {
             ...feedback,
-            comments: [
-              ...(feedback.comments || []),
-              { id: commentId, content, user },
-            ],
+            comments: [...(feedback.comments || []), {id: commentId, content, user}],
           };
         }
         return feedback; // Return unchanged feedback if ID doesn't match
@@ -54,9 +44,9 @@ export default function FeedbackContextProvider({ children }) {
   }
   // edit feedback user product data
   function editProductData(id, title, category, status, description) {
-    const updatedProductData = productData.map((product) => {
+    const updatedProductData = productData.map(product => {
       if (product.id === +id) {
-        return { ...product, title, category, status, description };
+        return {...product, title, category, status, description};
       }
 
       return product;
@@ -66,14 +56,12 @@ export default function FeedbackContextProvider({ children }) {
   }
 
   function changeUpVotes(feedbackId) {
-    setProductData((prev) => {
-      return prev.map((feedback) => {
+    setProductData(prev => {
+      return prev.map(feedback => {
         if (feedback.id === feedbackId) {
           return {
             ...feedback,
-            upvotes: feedback.isUpVoted
-              ? feedback.upvotes - 1
-              : feedback.upvotes + 1,
+            upvotes: feedback.isUpVoted ? feedback.upvotes - 1 : feedback.upvotes + 1,
             isUpVoted: !feedback.isUpVoted,
           };
         } else {
@@ -83,12 +71,12 @@ export default function FeedbackContextProvider({ children }) {
     });
   }
 
-  function setReplies(commentId, reply,commentedTo) {
+  function setReplies(commentId, reply, commentedTo) {
     // Find the comment with the given ID in the productData
-    const updatedProductData = productData.map((item) => {
+    const updatedProductData = productData.map(item => {
       if (item.comments) {
         // Find the comment with the given ID
-        const updatedComments = item.comments.map((comment) => {
+        const updatedComments = item.comments.map(comment => {
           if (comment.id === commentId) {
             // Add the reply to the comment
             return {
@@ -99,14 +87,16 @@ export default function FeedbackContextProvider({ children }) {
                     {
                       content: reply,
                       replyingTo: commentedTo,
-                      user: mainData ,
+                      user: mainData,
                     },
                   ]
-                : [ {
-                  content: reply,
-                  replyingTo: commentedTo,
-                  user: mainData,
-                },],
+                : [
+                    {
+                      content: reply,
+                      replyingTo: commentedTo,
+                      user: mainData,
+                    },
+                  ],
             };
           }
           return comment;
@@ -123,9 +113,8 @@ export default function FeedbackContextProvider({ children }) {
 
     // Update the productData with the updated comments
     // You may need to setProductData(updatedProductData) here depending on your application logic
-    setProductData(updatedProductData)
+    setProductData(updatedProductData);
   }
-  
 
   return (
     <FeedbackContext.Provider

@@ -2,6 +2,7 @@ import styles from "./EditFeedbackForm.module.css";
 import {useContext} from "react";
 import {FeedbackContext} from "../../store/feedback-context";
 import {useForm} from "react-hook-form";
+import {useParams, useNavigate} from "react-router-dom";
 
 function EditFeedbackForm({product}) {
   // Initialize form with default values from the product
@@ -18,14 +19,37 @@ function EditFeedbackForm({product}) {
     },
   });
 
-  const {productData} = useContext(FeedbackContext);
+  // Current Feedback Id for remove it
 
+  const {productData, editProductData, removeProduct} = useContext(FeedbackContext);
+
+  console.log(productData);
   // Prepare categories and statuses without modifying their case
   const categories = ["UI", "UX", ...new Set(productData.map(item => item.category))];
   const statuses = [...new Set(productData.map(item => item.status))];
 
+  // Navigate for redirecting
+
+  const navigate = useNavigate();
+
+  // For getting params
+  const {id} = useParams();
+
+  function handleDelete() {
+    removeProduct(+id);
+
+    // navigate(-1);
+  }
+
+  console.log(productData);
+
   function handleEditProduct(data) {
-    console.log(data);
+    editProductData({id, ...data});
+    navigate("/roadmap");
+  }
+
+  function handleCancel() {
+    navigate(-1);
   }
 
   return (
@@ -92,10 +116,10 @@ function EditFeedbackForm({product}) {
         </div>
 
         <div className={styles.left}>
-          <button type="button" className={styles.deleteBtn}>
+          <button type="button" className={styles.deleteBtn} onClick={() => handleDelete(id)}>
             Delete
           </button>
-          <button type="button" className={styles.cancel}>
+          <button type="button" className={styles.cancel} onClick={handleCancel}>
             Cancel
           </button>
         </div>
