@@ -16,18 +16,21 @@ const statuses = [
     value: "planned",
     id: 1,
     color: "#F49F85",
+    process: "Ideas prioritized for research",
   },
   {
     name: "In-Progress",
     value: "in-progress",
     id: 2,
     color: "#AD1FEA",
+    process: "Currently being developed",
   },
   {
     name: "Live",
     value: "live",
     id: 3,
     color: "#62BCFA",
+    process: "Released features",
   },
 ];
 function RoadMap() {
@@ -36,10 +39,11 @@ function RoadMap() {
   const [products, setProducts] = useState(null);
 
   useEffect(() => {
-    const filteredNames= statuses.filter(item=> item.id === stateNum)[0].value;
-    setProducts(getFeedbacksByName(filteredNames))
+    const filteredNames = statuses.filter((item) => item.id === stateNum)[0]
+      .value;
+    setProducts(getFeedbacksByName(filteredNames));
   }, [stateNum]);
-  console.log(products);
+  console.log(stateNum);
 
   return (
     <>
@@ -93,17 +97,32 @@ function RoadMap() {
               </Col>
             ))}
           </div>
-          <div className="h-[1px] w-full bg-[#8C92B3] opacity-45 tablet:hidden" />
+          {/* <div className="h-[1px] w-full bg-[#8C92B3] opacity-45 tablet:hidden" /> */}
+        </Row>
+        <Row>
+          <Col lg="12" className="tablet:hidden ml-6 pt-6 ">
+            <h1 className="w-fit text-title text-[1.1rem] font-bold">
+              {statuses[stateNum - 1].value}
+            </h1>
+            <p className="text-[.9rem] text-paragraph">
+              {statuses[stateNum - 1].process}
+            </p>
+          </Col>
         </Row>
       </Container>
-      <Container className="">
+      <Container className="tablet:hidden">
         <Row>
-          {
-            products && products.map(feedback=>(
-
-              <RoadMapFilter feedback={feedback}/>
-            ))
-          }
+          {products &&
+            products.map((feedback) => <RoadMapFilter feedback={feedback} />)}
+        </Row>
+      </Container>
+      <Container className="hidden tablet:block">
+        <Row>
+          {statuses.map((item) => (
+            <Col lg="4" xs="4">
+              {item.name}
+            </Col>
+          ))}
         </Row>
       </Container>
     </>
