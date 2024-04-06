@@ -2,7 +2,7 @@
   border: none;
   border-radius: 0.625rem;
   background: rgba(var(--add-btn));
-  padding: 0.66rem 1rem;
+  padding: 0.25rem 0.25rem;
   font-size: 0.8125rem;
   font-weight: 700;
   color: rgba(var(--text-main-btns));
@@ -10,4 +10,9 @@
 }
 .purpleBtn:hover {
   background-color: rgba(var(--add-btn-h));
+}
+@media screen and (min-width: 360px){
+  .purpleBtn {
+    padding: 0.5rem 1rem;
+  }
 }
