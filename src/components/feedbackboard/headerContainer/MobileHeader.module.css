@@ -18,6 +18,7 @@
   color: rgba(var(--text-main-btns));
   font-size: 0.8125rem;
   font-weight: 400;
+  cursor: pointer;
 }
 .selectOption {
   color: rgba(var(--text-main-btns));
@@ -35,7 +36,32 @@
   font-weight: 400;
   font-size: 1rem;
 }
+.headerSuggestions {
+  display: none;
+}
+select {
+  cursor: pointer;
+}
+
 @media screen and (min-width: 48rem) {
   .blueCont {
+    margin: 0 auto 1.5rem auto;
+    width: 75%;
+    max-width: 53.75rem;
+    border-radius: 0.625rem;
+  }
+  .headerSuggestions {
+    width: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+  }
+  .suggestionP,
+  .suggestionSpan {
+    margin: 0;
+    color: rgba(var(--text-main-btns));
+    font-size: 1.125rem;
+    font-weight: 700;
+    letter-spacing: -0.01563rem;
   }
 }

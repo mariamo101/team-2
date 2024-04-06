@@ -4,7 +4,6 @@ import styles from "./FeedBackBoard.module.css";
 import { useContext } from "react";
 import { FeedbackContext } from "../../store/feedback-context";
 import { Container } from "reactstrap";
-import SideBar from "./sideBar/SideBar";
 import emptyFeedback from "/assets/suggestions/illustration-empty.svg";
 import MainButton from "./mainButton/MainButton";
 const FeedBackBoard = () => {
@@ -33,7 +32,7 @@ const FeedBackBoard = () => {
   return (
     <>
       <MobileHeader />
-      <div className={styles.feedBackContainer}>
+      <div>
         {productData.map((product) => (
           <Container key={Math.floor(Math.random() * Date.now())}>
             <FeedbackContainer {...product} />
