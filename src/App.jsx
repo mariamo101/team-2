@@ -2,6 +2,7 @@ import {lazy, Suspense} from "react";
 import {BrowserRouter as Router, Routes, Route, Navigate} from "react-router-dom";
 
 import "./App.css";
+import DarkMode from "./components/DarkMode/DarkMode";
 
 const Feedbacks = lazy(() => import("./pages/FeedBacks"));
 const Feedback = lazy(() => import("./pages/FeedBack"));
@@ -12,6 +13,7 @@ const Roadmap = lazy(() => import("./pages/RoadMap"));
 function App() {
   return (
     <Router>
+      <DarkMode />
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route path="/feedbacks" element={<Navigate to="/" />} />

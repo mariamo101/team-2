@@ -54,7 +54,7 @@ function FeedbackContainer({
 
   return (
     <div
-      className={`flex flex-col gap-[20px] bg-white rounded-[10px] p-[24px] md:p-[28px] lg:px-[32px] relative`}
+      className={`flex flex-col gap-[20px] bg-containerBg rounded-[10px] p-[24px] md:p-[28px] lg:px-[32px] relative`}
     >
       {/* User Feedback Container */}
 
@@ -74,9 +74,9 @@ function FeedbackContainer({
           {/* Upvote button */}
 
           <button
-            className={`hidden md:flex flex-col items-center gap-[10px] px-[13px] py-[6px] rounded-[10px] h-fit ${
+            className={`hidden md:flex flex-col items-center gap-[10px] px-[13px] py-[6px] rounded-[10px] h-fit w-10 ${
               filtered?.isUpVoted
-                ? "bg-smBtnBgA text-white"
+                ? "bg-smBtnBgA text-nums"
                 : "bg-smBtnBg text-nums"
             }`}
             onClick={() => changeUpVote(id)}
@@ -85,7 +85,7 @@ function FeedbackContainer({
               <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M1 6l4-4 4 4"
-                  stroke="#fff"
+                  stroke={`${filtered?.isUpVoted ? '#fff' : '#000'}`}
                   stroke-width="2"
                   fill="none"
                   fill-rule="evenodd"
@@ -94,7 +94,7 @@ function FeedbackContainer({
             ) : (
               <img src={upArrow} alt="up arrow" />
             )}
-            <span className="text-[.8125rem] font-bold">{upvotes}</span>
+            <span className={`text-[.8125rem] font-bold ${filtered?.isUpVoted ? 'text-white' : 'text-nums'}`}>{upvotes}</span>
           </button>
           {/* Feedback details and Redirect to edit page*/}
           <div
@@ -122,7 +122,7 @@ function FeedbackContainer({
               <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M1 6l4-4 4 4"
-                  stroke="#fff"
+                  stroke="#000"
                   stroke-width="2"
                   fill="none"
                   fill-rule="evenodd"
@@ -131,12 +131,12 @@ function FeedbackContainer({
             ) : (
               <img src={upArrow} alt="up arrow" />
             )}
-            <span className="text-[.8125rem] font-bold">{upvotes}</span>
+            <span className={`text-[.8125rem] font-bold ${filtered?.isUpVoted ? 'text-black' : 'text-white'}`}>{upvotes}</span>
           </button>
           {/* Comments count */}
           <div className="flex items-center gap-2">
             <img src={commentsSvg} alt="comments" />
-            <span>{commentsLength ? commentsLength : totalLength | 0}</span>
+            <span className="text-nums">{commentsLength ? commentsLength : totalLength | 0}</span>
           </div>
         </div>
       </div>

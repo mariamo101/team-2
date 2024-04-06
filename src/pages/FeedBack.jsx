@@ -61,16 +61,6 @@ function FeedBack() {
     setTotalLength(getLength);
   }, [id,productData]);
 
-  // Get Comments Quantity
-  const totalLength = feedback?.comments?.reduce((acc, comment) => {
-    if (comment.replies) {
-      return acc + comment?.replies.length;
-    } else {
-      return acc + feedback?.comments?.length;
-    }
-  }, 0);
-
-
   return (
     <div className="bg-bodyC p-6 min-h-screen">
       <Container>
@@ -96,8 +86,10 @@ function FeedBack() {
         </Row>
         <Row>
           <main className="my-5 bg-containerBg rounded-lg p-6">
-            <h4 className="text-title text-[18px] font-bold tracking-[0.25px] pl-6">
-              {!feedback?.comments?.length ? "No Comments yet" : `${totalLength} Comments`}
+            <h4 className="text-title text-[18px] font-bold tracking-[0.25px] pl-6 mb-6 sm:mb-7">
+              {!feedback?.comments?.length
+                ? "No Comments yet"
+                : `${totalLength} Comments`}
             </h4>
             {feedback?.comments?.map((comment, index) => (
               <div key={comment.id}>
@@ -110,7 +102,7 @@ function FeedBack() {
                       <div
                         className={`w-[0.7px] h-[150%] bg-[#647196] opacity-[.1] absolute bottom-0 left-[51px]`}
                       />
-                      <Reply key={reply.id} reply={reply} />
+                      <Reply key={reply.id} comment={comment} reply={reply}  />
                     </div>
                   ))}
                 {index !== feedback?.comments?.length - 1 && <hr />}

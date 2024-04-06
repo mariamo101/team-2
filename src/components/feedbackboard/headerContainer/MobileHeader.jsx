@@ -1,10 +1,9 @@
 import styles from "./MobileHeader.module.css";
 import MainButton from "../mainButton/MainButton";
 import GradientBoard from "../gradientBoard/GradientBoard";
-
 export default function MobileHeader() {
   return (
-    <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
+    <div className="flex w-full flex-col md:hidden">
       <GradientBoard />
       <div className={styles.blueCont}>
         <form className={styles.sort}>

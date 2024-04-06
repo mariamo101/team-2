@@ -1,14 +1,33 @@
-.animation{
-    animation-name: slidein;
-    animation-duration: .4s;
-    animation-iteration-count: 1;
+.animation {
+  animation-name: slidein;
+  animation-duration: 0.4s;
+  animation-iteration-count: 1;
+}
+.animationBackward {
+  animation-name: slideout;
+  animation-duration: 0.7s;
+  animation-iteration-count: 1;
 }
 @keyframes slidein {
-    from {
-      transform: translateY(100%);
-    }
-  
-    to {
-      transform: translateY(0%);
-    }
+  from {
+    transform: translateY(100%);
   }
+
+  to {
+    transform: translateY(0%);
+  }
+}
+
+@keyframes slideout {
+  from {
+    transform: translateY(-100%);
+    opacity: 0.3;
+    transform: scale(.4);
+  }
+
+  to {
+    transform: translateY(0%);
+    opacity: 1;
+    transform: scale(1);
+  }
+}
