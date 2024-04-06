@@ -29,3 +29,45 @@
 .feedBackContainer {
   margin: 0 1.5rem 1rem 1.5rem;
 }
+.noFeedback {
+  border-radius: 0.625rem;
+  margin: 0 1.5rem 2.94rem 1.5rem;
+  background-color: rgba(var(--container-bg));
+  padding: 4.75rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+.noFeedbackYet {
+  text-align: center;
+  color: rgba(var(--title));
+  margin-top: 2.44rem;
+}
+.noFeedbackP {
+  text-align: center;
+  color: rgba(var(--paragraph));
+  margin-top: 0.87rem;
+}
+@media screen and (min-width: 48rem) {
+  .noFeedback {
+    padding: 0 7rem 5rem;
+  }
+  .noFeedbackYet {
+    letter-spacing: -0.02081rem;
+    font-size: 1.5rem;
+  }
+  .noFeedbackP {
+    font-size: 1rem;
+    margin-bottom: 3rem;
+    max-width: 25.625rem;
+  }
+}
+@media screen and (min-width: 90rem) {
+  .noFeedback {
+    padding: 6.94rem 12.5rem;
+  }
+  .noFeedbackP {
+    max-width: 25.625rem;
+  }
+}

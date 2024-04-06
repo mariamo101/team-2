@@ -6,9 +6,7 @@ export default function MainButton({ text }) {
   return (
     <>
       <Link to="/new-feedback">
-        <>
-          <button className={styles.purpleBtn}>{text}</button>
-        </>
+        <button className={styles.purpleBtn}>{text}</button>
       </Link>
     </>
   );

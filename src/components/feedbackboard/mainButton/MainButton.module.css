@@ -11,3 +11,8 @@
 .purpleBtn:hover {
   background-color: rgba(var(--add-btn-h));
 }
+@media screen and (min-width: 48rem) {
+  .purpleBtn {
+    padding: 0.78rem 1.53rem;
+  }
+}
