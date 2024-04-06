@@ -3,6 +3,8 @@ import { Container, Row, Col } from "reactstrap";
 // Button for feedback
 import MainButton from "../components/feedbackboard/mainButton/MainButton";
 import { useState } from "react";
+// styles
+import styles from '../styles/RoadMap.module.css'
 
 const statuses = [
   {
@@ -53,7 +55,7 @@ function RoadMap() {
           </header>
         </Row>
         <Row>
-          <div className="flex mobile:hidden">
+          <div className="flex tablet:hidden">
             {statuses.map((status) => (
               <Col
                 key={status.id}
@@ -68,9 +70,11 @@ function RoadMap() {
                 >
                   {status.name}
                 </span>
-                <div
-                  className={`w-[60%] h-1 bg-[${status.color}] absolute -bottom-1  rounded-sm`}
-                />
+                {stateNum === status.id && (
+                  <div
+                    className={`${styles.animation} w-[60%] h-1 bg-[${status.color}] absolute -bottom-1  rounded-sm`}
+                  />
+                )}
               </Col>
             ))}
             <div className="mt-1" />
