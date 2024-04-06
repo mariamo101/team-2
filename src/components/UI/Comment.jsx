@@ -1,6 +1,14 @@
-import styles from '../../styles/Comment.module.css'
+/* eslint-disable */
+import { useState } from "react";
+import styles from "../../styles/Comment.module.css";
+import FeedbackReplyContainer from "./FeedbackReplyContainer";
 // Comment component
 const Comment = ({ comment }) => {
+  const [isReply, setIsReply] = useState(false);
+
+  function toggleReply() {
+    setIsReply((prev) => !prev);
+  }
   return (
     <article className={`px-8 ${styles.animation}`}>
       <div className="flex items-center justify-between flex-wrap">
@@ -19,13 +27,19 @@ const Comment = ({ comment }) => {
             </p>
           </div>
         </div>
-        <button className="text-[#4661E6] text-[.8125rem] font-semibold">
+        <button
+          onClick={toggleReply}
+          className="text-[#4661E6] text-[.8125rem] font-semibold"
+        >
           Reply
         </button>
       </div>
       <p className="text-paragraph text-[15px] py-[17px] pl-14">
         {comment.content}
       </p>
+      {isReply && (
+        <FeedbackReplyContainer comment={comment} toggleReply={toggleReply} />
+      )}
     </article>
   );
 };

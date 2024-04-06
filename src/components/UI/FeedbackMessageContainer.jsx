@@ -22,7 +22,7 @@ const FeedbackMessageContainer = ({feedbackId}) => {
   const onSubmit = async (data) => {
     setComment(
       +feedbackId, // ID of the feedback where you want to add the comment
-      Math.floor(Math.random() * Date.now), // ID of the comment
+      Math.floor(Math.random() * Date.now()), // ID of the comment
       userValue, // Content of the comment
       {
         image: "/assets/user-images/image-elijah.jpg",
