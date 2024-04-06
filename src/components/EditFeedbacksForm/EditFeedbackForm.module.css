@@ -1,12 +1,6 @@
-.title,
 .label {
   color: rgba(var(--title));
   font-weight: 700;
-}
-
-.title {
-  font-size: 18px;
-  margin-top: 10px;
 }
 
 .label {
@@ -16,19 +10,21 @@
 .paragraph {
   color: rgba(var(--paragraph));
   font-size: 13px;
+  margin-bottom: 10px;
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 20px;
   color: rgba(var(--title));
 }
 
 .input,
 .textarea,
-.select {
-  padding-left: 16px;
+.select,
+.select option {
+  padding-left: 24px;
   padding-top: 10px;
   border-radius: 5px;
 }
@@ -38,6 +34,7 @@
   background-color: rgba(var(--input-bg));
   outline: none;
   padding: 13px;
+  margin-top: 10px;
   border-radius: 5px;
   padding-left: 20px;
   margin-bottom: 5px;
@@ -92,27 +89,82 @@
   gap: 20px;
 }
 
-.buttonsContainer a,
-.addBtn {
-  width: 100%;
-  border-radius: 10px;
-  padding: 10.5px 0;
-  text-align: center;
-  font-weight: 700;
+.left {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 20px;
 }
 
-.buttonsContainer a {
+.cancel,
+.addBtn,
+.deleteBtn {
+  width: 100%;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 700;
+  padding: 10px 0;
+}
+
+.cancel {
   background-color: rgba(var(--cancel-btn));
   color: rgba(var(--text-white));
 }
-.buttonsContainer a:hover {
+.cancel:hover {
   background-color: rgba(var(--cancel-btn-h));
 }
 .addBtn {
   color: rgba(var(--text-secondary));
   background-color: rgba(var(--add-btn));
+  margin: 0;
+}
+
+.deleteBtn {
+  background-color: rgba(var(--delete-btn));
+  color: rgba(var(--text-secondary));
+}
+
+.deleteBtn:hover {
+  background-color: rgba(var(--delete-btn-h));
 }
 
 .addBtn:hover {
   background-color: rgba(var(--add-btn-h));
+}
+
+@media screen and (min-width: 766px) {
+  .label,
+  .paragraph {
+    font-size: 14px;
+  }
+
+  .textarea {
+    height: 96px;
+  }
+
+  .buttonsContainer {
+    flex-direction: row-reverse;
+    align-items: flex-basis;
+  }
+
+  .cancel,
+  .addBtn {
+    height: 44px;
+    padding: 0;
+  }
+
+  .cancel {
+    width: 93px;
+  }
+  .addBtn {
+    width: 144px;
+  }
+
+  .left {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .deleteBtn {
+    width: 93px;
+  }
 }
