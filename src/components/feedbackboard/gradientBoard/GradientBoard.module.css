@@ -10,7 +10,6 @@ h2 {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 1rem 0.94rem 1rem;
-  /* min-width: 22.5rem; */
 }
 h1 {
   color: rgba(var(--text-white));
@@ -23,4 +22,23 @@ h2 {
   font-weight: 500;
   color: rgba(var(--text-white));
   opacity: 0.75;
+}
+@media screen and (min-width: 48rem) {
+  .gradientBoard {
+    background-image: url(/assets/suggestions/tablet/background-header.png);
+    width: 13.9375rem;
+    height: 11.125rem;
+    border-radius: 0.625rem;
+    align-items: flex-end;
+  }
+  img {
+    display: none;
+  }
+  .tabletBar {
+    gap: 1rem;
+    width: 100%;
+    display: flex;
+    padding: 2.5rem 2.5rem 0 2.5rem;
+    justify-content: flex-end;
+  }
 }

@@ -3,7 +3,7 @@ import styles from "./RoadBoard.module.css";
 import { Link } from "react-router-dom";
 export default function () {
   return (
-    <div className={styles.roadBoard}>
+    <div className={`${styles.roadBoard} md:mb-0`}>
       <h1 className={styles.roadTitle}>
         Roadmap
         <Link to="/roadmap" className={styles.view}>
