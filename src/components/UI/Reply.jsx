@@ -1,6 +1,7 @@
-import styles from '../../styles/Comment.module.css'
+import styles from "../../styles/Comment.module.css";
 // Reply component
 const Reply = ({ reply }) => {
+  console.log(reply);
   return (
     <article className={`pl-20 pr-8 w-full ${styles.animation}`}>
       <div className="flex items-center justify-between flex-wrap">
@@ -23,7 +24,12 @@ const Reply = ({ reply }) => {
           Reply
         </button>
       </div>
-      <p className="text-paragraph text-[15px] py-[17px]">{reply.content}</p>
+      <p className="text-paragraph text-[15px] py-[17px]">
+        <span className="text-[#AD1FEA] text-[13px] font-bold ">
+          @{reply.replyingTo}
+        </span>{" "}
+        {reply.content}
+      </p>
     </article>
   );
 };
