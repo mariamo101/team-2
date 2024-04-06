@@ -85,7 +85,7 @@ function FeedbackContainer({
               <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M1 6l4-4 4 4"
-                  stroke={`${filtered?.isUpVoted ? '#fff' : '#000'}`}
+                  stroke="#000"
                   stroke-width="2"
                   fill="none"
                   fill-rule="evenodd"
@@ -94,13 +94,13 @@ function FeedbackContainer({
             ) : (
               <img src={upArrow} alt="up arrow" />
             )}
-            <span className={`text-[.8125rem] font-bold ${filtered?.isUpVoted ? 'text-white' : 'text-nums'}`}>{upvotes}</span>
+            <span className={`text-[.8125rem] font-bold ${filtered?.isUpVoted ? 'text-smBtnTxtA' : 'text-nums'}`}>{upvotes}</span>
           </button>
           {/* Feedback details and Redirect to edit page*/}
           <div
             className="cursor-pointer"
             onClick={() => {
-              navigate(`/edit-feedback/${id}`);
+              navigate(`/feedbacks/${id}`);
             }}
           >
             <h1 className="text-title text-[.8125rem] font-bold">{title}</h1>
@@ -131,7 +131,7 @@ function FeedbackContainer({
             ) : (
               <img src={upArrow} alt="up arrow" />
             )}
-            <span className={`text-[.8125rem] font-bold ${filtered?.isUpVoted ? 'text-black' : 'text-white'}`}>{upvotes}</span>
+            <span className={`text-[.8125rem] font-bold ${filtered?.isUpVoted ? 'text-smBtnTxtA' : 'text-title'}`}>{upvotes}</span>
           </button>
           {/* Comments count */}
           <div className="flex items-center gap-2">
