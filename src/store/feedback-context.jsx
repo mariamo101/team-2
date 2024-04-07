@@ -37,14 +37,14 @@ export default function FeedbackContextProvider({children}) {
   }
 
   // add comment in feedback user object
-  function setComment(feedbackId, commentId, content, user) {
+  function setComment(feedbackId, commentId, content) {
     setProductData(prevData => {
       return prevData.map(feedback => {
         if (feedback.id === feedbackId) {
           // If the feedback matches the specified ID, add the comment
           return {
             ...feedback,
-            comments: [...(feedback.comments || []), {id: commentId, content, user}],
+            comments: [...(feedback.comments || []), {id: commentId, content, user:mainData}],
           };
         }
         return feedback; // Return unchanged feedback if ID doesn't match
