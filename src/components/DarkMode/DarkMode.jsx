@@ -3,11 +3,12 @@ import {Moon, Sun, ArrowUpLeft} from "lucide-react";
 import styles from "./DarkMode.module.css";
 
 function DarkMode() {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
+    localStorage.setItem('theme', theme)
   }, [theme]);
 
   const toggleTheme = () => {
