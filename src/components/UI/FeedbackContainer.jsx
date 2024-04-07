@@ -49,9 +49,8 @@ function FeedbackContainer({
 
   function changeUpVote(feedbackId) {
     changeUpVotes(feedbackId);
-    console.log(productData);
   }
-
+  const upvotesCount = filtered ? filtered.upvotes : upvotes;
   return (
     <div
       className={`flex flex-col gap-[20px] bg-containerBg rounded-[10px] p-[24px] md:p-[28px] lg:px-[32px] relative hover:scale-x-95 hover:scale-y-105`}
@@ -94,7 +93,7 @@ function FeedbackContainer({
             ) : (
               <img src={upArrow} alt="up arrow" />
             )}
-            <span className={`text-[.8125rem] font-bold ${filtered?.isUpVoted ? 'text-smBtnTxtA' : 'text-nums'}`}>{upvotes}</span>
+            <span className={`text-[.8125rem] font-bold ${filtered?.isUpVoted ? 'text-numsA' : 'text-title'}`}>{upvotesCount}</span>
           </button>
           {/* Feedback details and Redirect to edit page*/}
           <div
@@ -105,7 +104,7 @@ function FeedbackContainer({
           >
             <h1 className="text-title text-[.8125rem] font-bold">{title}</h1>
             <p className={`text-paragraph ${isRoadMap && 'line-clamp-2 overflow-hidden'}`}>{description}</p>
-            <button className="bg-[#F2F4FE] text-[#4661E6] px-[13px] py-[6px] rounded-[10px] mb-[14px]">
+            <button className="bg-smBtnBg text-title px-[13px] py-[6px] rounded-[10px] mb-[14px]">
               {category}
             </button>
           </div>
@@ -131,7 +130,7 @@ function FeedbackContainer({
             ) : (
               <img src={upArrow} alt="up arrow" />
             )}
-            <span className={`text-[.8125rem] font-bold ${filtered?.isUpVoted ? 'text-smBtnTxtA' : 'text-title'}`}>{upvotes}</span>
+            <span className={`text-[.8125rem] font-bold ${filtered?.isUpVoted ? 'text-numsA' : 'text-title'}`}>{upvotesCount}</span>
           </button>
           {/* Comments count */}
           <div className="flex items-center gap-2">
