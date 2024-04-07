@@ -8,15 +8,8 @@ export default function ButtonBoard() {
   const capitalizeFirstLetter = (word) =>
     word.charAt(0).toUpperCase() + word.slice(1);
 
-  const { productData } = useContext(FeedbackContext);
-  const categoriesOrder = [
-  const { productData,filteredProductsByCategory } = useContext(FeedbackContext);
-  const categories = [
-    "All",
-    "UI",
-    "UX",
-    ...Array.from(new Set(productData.map((product) => product.category))),
-  ];
+  const { filteredProductsByCategory } = useContext(FeedbackContext);
+
   function handleCategory(category){
     const allProduct = filteredProductsByCategory(category)
     console.log(allProduct);
