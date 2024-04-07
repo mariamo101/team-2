@@ -4,8 +4,14 @@ import suggestion from "/assets/suggestions/icon-suggestions.svg";
 import { useContext } from "react";
 import { FeedbackContext } from "../../../store/feedback-context";
 export default function MobileHeader() {
-  const { getFeedbacksByName } = useContext(FeedbackContext);
+  const { getFeedbacksByName,mainCategory,filteredProductsByCommentsAndUpvotes } = useContext(FeedbackContext);
+    
   const suggestions = getFeedbacksByName("suggestion").length;
+  function sortMostComments(type){
+    filteredProductsByCommentsAndUpvotes(type.target.value)
+    console.log(type.target.value);
+    console.log(mainCategory);
+  }
   return (
     <div className="flex w-full flex-col lg:flex-col">
       <div className={styles.blueCont}>
@@ -16,7 +22,7 @@ export default function MobileHeader() {
         </div>
         <form className={styles.sort}>
           <label htmlFor="sortBy">Sort By:</label>
-          <select className={styles.selectOption}>
+          <select className={styles.selectOption} onChange={(e)=>sortMostComments(e)}>
             <option value="mostUpvotes">Most Upvotes</option>
             <option value="leastUpvotes">Least Upvotes</option>
             <option value="mostComments">Most Comments</option>

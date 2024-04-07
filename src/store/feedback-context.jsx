@@ -12,10 +12,11 @@ export const FeedbackContext = createContext({
   getFeedbacksByName: () => {},
   mainData: [],
   deleteReplay: () => {},
+  deleteComment:()=>{},
   getFeedbacksByName: () => {},
   filteredProductsByCategory: () => {},
-  filteredProductsByComment: () => {},
-  filteredProductsByUpvotes: () => {},
+  filteredProductsByCommentsAndUpvotes: () => {},
+  mainCategory: [],
 });
 
 export default function FeedbackContextProvider({ children }) {
@@ -24,6 +25,9 @@ export default function FeedbackContextProvider({ children }) {
     return storedData ? JSON.parse(storedData) : feedbacksData.productRequests;
   });
   const [mainData, setMainData] = useState(feedbacksData.currentUser);
+  const [mainCategory, setMainCategory] = useState(
+    productData?.filter((item) => item?.category === "feature")
+  );
 
   useEffect(() => {
     // Update localStorage whenever productData changes
@@ -144,6 +148,20 @@ export default function FeedbackContextProvider({ children }) {
     // You may need to setProductData(updatedProductData) here depending on your application logic
     setProductData(updatedProductData);
   }
+  
+  function deleteComment(commentId){
+    const updateProductData = productData.map(item=>{
+      if(item.comments){
+        const filteredComments = item.comments.filter(comment=> comment?.id !== commentId)
+        return{
+          ...item,
+          comments: filteredComments,
+        }
+      }
+      return item;
+    })
+    setProductData(updateProductData)
+  }
 
   function deleteReplay(commentId, replyId) {
     const updatedProductData = productData.map((item) => {
@@ -178,14 +196,53 @@ export default function FeedbackContextProvider({ children }) {
     return productData.filter((product) => product.status === name);
   }
   function filteredProductsByCategory(category) {
-    return productData.filter((product) => product.category === category);
+    if (category === "All") {
+      setMainCategory(
+        productData.filter((product) => product.category === "feature")
+      );
+    } else {
+      setMainCategory(
+        productData.filter((product) => product.category === category)
+      );
+    }
   }
-  function filteredProductsByComment(comments) {
-    return productData.filter((product) => product.comments === comments);
+  function filteredProductsByCommentsAndUpvotes(type) {
+    let sortedProductRequests = [...mainCategory];
+    switch (type) {
+      case "mostComments":
+        sortedProductRequests.sort((a, b) => {
+          const numCommentsA = a.comments ? a.comments.length : 0;
+          const numCommentsB = b.comments ? b.comments.length : 0;
+          return numCommentsB - numCommentsA; // Sort in descending order
+        });
+        break;
+      case "leastComments":
+        sortedProductRequests.sort((a, b) => {
+          const numCommentsA = a.comments ? a.comments.length : 0;
+          const numCommentsB = b.comments ? b.comments.length : 0;
+          return numCommentsA - numCommentsB; // Sort in ascending order for least comments
+        });
+        break;
+      case "mostUpvotes":
+        sortedProductRequests.sort((a, b) => {
+          const numUpvotesA = a.upvotes || 0;
+          const numUpvotesB = b.upvotes || 0;
+          return numUpvotesB - numUpvotesA; // Sort in descending order for most upvotes
+        });
+        break;
+      case "leastUpvotes":
+        sortedProductRequests.sort((a, b) => {
+          const numUpvotesA = a.upvotes || 0;
+          const numUpvotesB = b.upvotes || 0;
+          return numUpvotesA - numUpvotesB; // Sort in ascending order for least upvotes
+        });
+        break;
+    }
+
+    setMainCategory(sortedProductRequests);
   }
-  function filteredProductsByUpvotes(upvotes) {
-    return productData.filter((product) => product.upvotes === upvotes);
-  }
+
+
   return (
     <FeedbackContext.Provider
       value={{
@@ -199,10 +256,11 @@ export default function FeedbackContextProvider({ children }) {
         getFeedbacksByName,
         mainData,
         deleteReplay,
+        deleteComment,
         getFeedbacksByName,
         filteredProductsByCategory,
-        filteredProductsByComment,
-        filteredProductsByUpvotes,
+        filteredProductsByCommentsAndUpvotes,
+        mainCategory,
       }}
     >
       {children}

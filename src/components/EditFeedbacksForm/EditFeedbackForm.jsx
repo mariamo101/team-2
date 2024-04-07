@@ -1,5 +1,5 @@
 import styles from "./EditFeedbackForm.module.css";
-import {useContext, useEffect} from "react";
+import {useContext} from "react";
 import {FeedbackContext} from "../../store/feedback-context";
 import {useForm} from "react-hook-form";
 import {useParams, useNavigate} from "react-router-dom";
@@ -25,8 +25,8 @@ function EditFeedbackForm({product}) {
 
   console.log(productData);
   // Prepare categories and statuses without modifying their case
-  const categories = ["UI", "UX", ...new Set(productData.map(item => item.category))];
-  const statuses = [...new Set(productData.map(item => item.status))];
+  const categories = ["UI", "UX", "Enhancement", "Bug", "Feature"];
+  const statuses = ["Suggestion", "Live", "Planned", "In-Progress"];
 
   // Navigate for redirecting
 
@@ -39,9 +39,9 @@ function EditFeedbackForm({product}) {
     removeProduct(+id);
   }
 
-  useEffect(() => {
-    console.log(productData);
-  }, [productData]);
+  // useEffect(() => {
+  //   console.log(productData);
+  // }, [productData]);
 
   function handleEditProduct(data) {
     editProductData(id, data.title, data.category, data.status, data.description);
