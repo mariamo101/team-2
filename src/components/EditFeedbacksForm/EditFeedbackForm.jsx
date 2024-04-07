@@ -44,7 +44,7 @@ function EditFeedbackForm({product}) {
   }, [productData]);
 
   function handleEditProduct(data) {
-    editProductData({id, ...data});
+    editProductData(id, data.title, data.category, data.status, data.description);
     navigate("/roadmap");
   }
 
@@ -111,7 +111,7 @@ function EditFeedbackForm({product}) {
       <div className={styles.buttonsContainer}>
         <div className={styles.right}>
           <button className={styles.addBtn} type="submit">
-            Add Feedback
+            Edit Feedback
           </button>
         </div>
 
