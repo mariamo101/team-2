@@ -1,14 +1,32 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "../../styles/Comment.module.css";
 import FeedbackReplyContainer from "./FeedbackReplyContainer";
+
+import { useContext } from "react";
+import { FeedbackContext } from "../../store/feedback-context";
+
 // Reply component
 const Reply = ({ comment, reply }) => {
   const [isReply, setIsReply] = useState(false);
+  const {mainData,deleteReplay} = useContext(FeedbackContext)
+  const [isValidToDelete, setIsValidToDelete] = useState(false)
 
+  useEffect(() => {
+    if(reply.user.username === mainData.username){
+      setIsValidToDelete(true)
+    }else{
+      setIsValidToDelete(false)
+    }
+  }, [mainData])
+  
   function toggleReply() {
     setIsReply((prev) => !prev);
   }
-  
+  function handleDelete(){
+    console.log(reply);
+    console.log(comment);
+    deleteReplay(comment.id, reply.userId)
+  }
   return (
     <article className={`pl-20 pr-8 w-full ${styles.animation}`}>
       <div className="flex items-center justify-between flex-wrap">
@@ -37,6 +55,9 @@ const Reply = ({ comment, reply }) => {
         </span>{" "}
         {reply.content}
       </p>
+      {
+        isValidToDelete && <button className="btn btn-danger mb-6" onClick={handleDelete}>Delete</button>
+      }
       {isReply && (
         <FeedbackReplyContainer comment={comment} reply={reply.user?.username} toggleReply={toggleReply} />
       )}
