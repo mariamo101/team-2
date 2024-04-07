@@ -9,7 +9,6 @@ export const FeedbackContext = createContext({
   changeUpVotes: () => {},
   setReplies: () => {},
   removeProduct: () => {},
-  getFeedbacksByName: () => {},
   mainData: [],
   deleteReplay: () => {},
   deleteComment:()=>{},
