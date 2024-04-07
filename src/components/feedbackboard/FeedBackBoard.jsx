@@ -30,10 +30,10 @@ const FeedBackBoard = () => {
   return (
     <>
       <Row className="place-content-center">
-        <Col lg="3">
+        <Col lg="3" className="p-0">
           <GradiantColuns />
         </Col>
-        <Col lg="7" md="12">
+        <Col lg="7" md="12" className="p-0">
           <MobileHeader />
           <div>
             {productData.map((product) => (

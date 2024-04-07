@@ -24,6 +24,7 @@
 .board {
   display: none;
 }
+
 @media screen and (min-width: 48rem) {
   .gradientBoard {
     background-image: url(/assets/suggestions/tablet/background-header.png);
@@ -42,7 +43,7 @@
     display: none;
   }
   .tabletBar {
-    width: 85%;
+    max-width: 85%;
     margin: 2.5rem auto 0 auto;
     gap: 1rem;
     display: flex;
