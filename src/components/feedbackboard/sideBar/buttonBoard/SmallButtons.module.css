@@ -1,4 +1,4 @@
-button {
+.button {
   border-radius: 0.625rem;
   background: rgba(var(--sm-btn-bg));
   font-size: 0.8125rem;
@@ -9,9 +9,9 @@ button {
   margin-right: 0.5rem;
   margin-bottom: 0.88rem;
 }
-button:hover {
+.button:hover {
   background-color: rgba(var(--sm-btn-bg-h));
 }
-button:active {
+.button:active {
   background-color: rgba(var(--sm-btn-bg-a));
 }
