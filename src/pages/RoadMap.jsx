@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { Container, Row } from "reactstrap";
+import {Container, Row} from "reactstrap";
 // Button for feedback
 import MainButton from "../components/feedbackboard/mainButton/MainButton";
 // SV files
@@ -26,7 +26,7 @@ function RoadMap() {
               <p className="m-0 tracking-[-0.25px] font-bold">Roadmap</p>
             </div>
 
-            <MainButton text="+ Add Feedback" path='/new-feedback'/>
+            <MainButton text="+ Add Feedback" path="/new-feedback" />
           </header>
         </Row>
       </Container>

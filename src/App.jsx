@@ -10,6 +10,8 @@ const NewFeedback = lazy(() => import("./pages/NewFeedback"));
 const EditFeedback = lazy(() => import("./pages/EditFeedBack"));
 const Roadmap = lazy(() => import("./pages/RoadMap"));
 
+// const Game = lazy(() => import("./GameBoard/Game"));
+
 function App() {
   return (
     <Router>
