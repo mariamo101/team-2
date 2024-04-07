@@ -47,9 +47,20 @@
 .view:hover {
   color: rgba(var(--view-h));
 }
+
 @media screen and (min-width: 48rem) {
   .roadBoard {
-    width: 40%;
+    width: 60%;
     height: 11.125rem;
+  }
+}
+@media screen and (min-width: 60rem) {
+  .roadBoard {
+    width: 97%;
+  }
+}
+@media screen and (min-width: 75rem) {
+  .roadBoard {
+    width: 86%;
   }
 }

@@ -1,5 +1,5 @@
 /* eslint-disable */
-import {createContext, useState} from "react";
+import {createContext, useEffect, useState} from "react";
 import feedbacksData from "../data.json";
 export const FeedbackContext = createContext({
   productData: [],
@@ -8,12 +8,22 @@ export const FeedbackContext = createContext({
   editProductData: () => {},
   changeUpVotes: () => {},
   setReplies: () => {},
-  removeProduct: () => {},
+  removeProduct:()=>{},
+  getFeedbacksByName:()=>{}
 });
 
 export default function FeedbackContextProvider({children}) {
-  const [productData, setProductData] = useState(feedbacksData.productRequests);
+  const [productData, setProductData] = useState(() => {
+    const storedData = localStorage.getItem('myData');
+    return storedData ? JSON.parse(storedData) : feedbacksData.productRequests;
+  });
   const [mainData, setMainData] = useState(feedbacksData.currentUser);
+
+  useEffect(() => {
+    // Update localStorage whenever productData changes
+    localStorage.setItem('myData', JSON.stringify(productData));
+  }, [productData]);
+
 
   function setProduct(id, title, category, upvotes, status, description, comments) {
     setProductData(prev => [
@@ -114,7 +124,11 @@ export default function FeedbackContextProvider({children}) {
     // You may need to setProductData(updatedProductData) here depending on your application logic
     setProductData(updatedProductData);
   }
-
+  
+  function getFeedbacksByName(name){
+    const filtered = productData.filter(product=> product.status === name)
+    return filtered
+  }
   return (
     <FeedbackContext.Provider
       value={{
@@ -125,6 +139,7 @@ export default function FeedbackContextProvider({children}) {
         changeUpVotes,
         setReplies,
         removeProduct,
+        getFeedbacksByName,
       }}
     >
       {children}

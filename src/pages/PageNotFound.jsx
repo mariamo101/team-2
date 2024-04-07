@@ -1,6 +1,7 @@
 import {Link} from "react-router-dom";
 
 import styles from "../styles/PageNotFound.module.css";
+import {LoaderDark} from "../components/UI/Loader";
 function PageNotFound() {
   return (
     <>
@@ -17,6 +18,7 @@ function PageNotFound() {
           <Link className="no-underline border-3 border-orange p-2" to="/game">
             Play game
           </Link>
+          {LoaderDark}
         </header>
       </div>
     </>

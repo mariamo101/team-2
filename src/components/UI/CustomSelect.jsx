@@ -38,10 +38,10 @@ const customStyles = {
 
 function YourComponent() {
   const options = [
-    { value: "mostUpvotes", label: "Most Upvotes" },
-    { value: "leastUpvotes", label: "Least Upvotes" },
-    { value: "mostComments", label: "Most Comments" },
-    { value: "leastComments", label: "Least Comments" },
+    {value: "mostUpvotes", label: "Most Upvotes"},
+    {value: "leastUpvotes", label: "Least Upvotes"},
+    {value: "mostComments", label: "Most Comments"},
+    {value: "leastComments", label: "Least Comments"},
   ];
 
   return (
