@@ -64,6 +64,7 @@
 @media screen and (min-width: 62rem) {
   .blueCont {
     margin-top: 2.5rem;
+    max-width: 50.75rem;
   }
 }
 @media screen and (min-width: 90rem) {
