@@ -20,7 +20,7 @@ export default function MobileHeader() {
           </select>
         </form>
 
-        <MainButton text="+ Add Feedback" />
+        <MainButton path="/new-feedback" text="+ Add Feedback" />
       </div>
     </div>
   );

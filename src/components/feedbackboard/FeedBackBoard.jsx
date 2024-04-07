@@ -22,7 +22,7 @@ const FeedBackBoard = () => {
               Got a suggestion? Found a bug that needs to be squashed? We love
               hearing about new ideas to improve our app.
             </p>
-            <MainButton text="+ Add Feedback" />
+            <MainButton path="/new-feedback" text="+ Add Feedback" />
           </div>
         </Container>
       </>
