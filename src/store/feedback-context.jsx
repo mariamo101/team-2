@@ -9,10 +9,9 @@ export const FeedbackContext = createContext({
   changeUpVotes: () => {},
   setReplies: () => {},
   removeProduct: () => {},
-  getFeedbacksByName: () => {},
   mainData: [],
   deleteReplay: () => {},
-  deleteComment:()=>{},
+  deleteComment: () => {},
   getFeedbacksByName: () => {},
   filteredProductsByCategory: () => {},
   filteredProductsByCommentsAndUpvotes: () => {},
@@ -148,19 +147,21 @@ export default function FeedbackContextProvider({ children }) {
     // You may need to setProductData(updatedProductData) here depending on your application logic
     setProductData(updatedProductData);
   }
-  
-  function deleteComment(commentId){
-    const updateProductData = productData.map(item=>{
-      if(item.comments){
-        const filteredComments = item.comments.filter(comment=> comment?.id !== commentId)
-        return{
+
+  function deleteComment(commentId) {
+    const updateProductData = productData.map((item) => {
+      if (item.comments) {
+        const filteredComments = item.comments.filter(
+          (comment) => comment?.id !== commentId
+        );
+        return {
           ...item,
           comments: filteredComments,
-        }
+        };
       }
       return item;
-    })
-    setProductData(updateProductData)
+    });
+    setProductData(updateProductData);
   }
 
   function deleteReplay(commentId, replyId) {
@@ -242,7 +243,9 @@ export default function FeedbackContextProvider({ children }) {
     setMainCategory(sortedProductRequests);
   }
 
-
+ 
+  const categories = ["UI", "UX", "enhancement", "bug", "feature"];
+  const statuses = ["suggestion", "live", "planned", "in-progress"];
   return (
     <FeedbackContext.Provider
       value={{
@@ -257,10 +260,13 @@ export default function FeedbackContextProvider({ children }) {
         mainData,
         deleteReplay,
         deleteComment,
-        getFeedbacksByName,
         filteredProductsByCategory,
         filteredProductsByCommentsAndUpvotes,
         mainCategory,
+        productData,
+        categories,
+        statuses,
+        setProductData,
       }}
     >
       {children}
