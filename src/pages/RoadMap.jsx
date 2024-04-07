@@ -38,9 +38,10 @@ function RoadMap() {
   const [stateNum, setStateNum] = useState(1);
   const { getFeedbacksByName, productData } = useContext(FeedbackContext);
   const [products, setProducts] = useState(null);
-  const [planned, setPlanned] = useState(null);
-  const [progress, setProgress] = useState(null);
-  const [live, setLive] = useState(null);
+
+  const planned = getFeedbacksByName("planned")
+  const progress = getFeedbacksByName("in-progress")
+  const live = getFeedbacksByName("live")
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -48,9 +49,6 @@ function RoadMap() {
       .value;
     setProducts(getFeedbacksByName(filteredNames));
 
-    setPlanned(getFeedbacksByName("planned"));
-    setProgress(getFeedbacksByName("in-progress"));
-    setLive(getFeedbacksByName("live"));
   }, [stateNum]);
 
   return (
@@ -97,7 +95,7 @@ function RoadMap() {
                     status.id === stateNum ? "text-title" : "text-viewD"
                   }`}
                 >
-                  {status.name}
+                  {status.name} {status.value === "planned" ? planned.length : status.value === "in-progress" ? progress.length : live.length}
                 </span>
                 {stateNum === status.id && (
                   <div
@@ -107,13 +105,13 @@ function RoadMap() {
               </Col>
             ))}
           </div>
-          {/* <div className="h-[1px] w-full bg-[#8C92B3] opacity-45 tablet:hidden" /> */}
+          <div className="h-[1px] w-full bg-[#8C92B3] opacity-45 tablet:hidden" />
         </Row>
         <div className="tablet:hidden">
           <Row>
             <Col lg="12" className="tablet:hidden ml-6 pt-6 ">
               <h1 className="w-fit text-title text-[1.1rem] font-bold">
-                {statuses[stateNum - 1].value}
+                {statuses[stateNum - 1].name}{' '}({statuses[stateNum - 1].value === "planned" ? planned.length : statuses[stateNum - 1].value === "in-progress" ? progress.length : live.length})
               </h1>
               <p className="text-[.9rem] text-paragraph">
                 {statuses[stateNum - 1].process}
@@ -130,8 +128,9 @@ function RoadMap() {
         <Row>
           {statuses.map((item) => (
             <Col lg="4" xs="4" className="mt-3 hidden tablet:block">
-              <a href={`#${item.value}`} className="no-underline w-fit text-title text-[1.1rem] font-bold">
+              <a href={`#${item.value}`} className="no-underline w-fit text-title text-[1.1rem] font-bold flex gap-2">
                   {item.name}
+                  <span>({item.value === "planned" ? planned.length : item.value === "in-progress" ? progress.length : live.length})</span>
               </a>
                 <p className="text-[.9rem] text-paragraph">{item.process}</p>
             </Col>
