@@ -15,23 +15,23 @@ const FeedBackBoard = () => {
       setTheData(mainCategory)
   }, [mainCategory])
   
-  if (productData.length === 0) {
-    return (
-      <>
-        <Container>
-          <div className={styles.noFeedback}>
-            <img src={emptyFeedback} alt="Empty Feedbacks" />
-            <h1 className={styles.noFeedbackYet}>There is no feedback yet.</h1>
-            <p className={styles.noFeedbackP}>
-              Got a suggestion? Found a bug that needs to be squashed? We love
-              hearing about new ideas to improve our app.
-            </p>
-            <MainButton path="/new-feedback" text="+ Add Feedback" />
-          </div>
-        </Container>
-      </>
-    );
-  }
+  // if (productData.length === 0) {
+  //   return (
+  //     <>
+  //       <Container>
+  //         <div className={styles.noFeedback}>
+  //           <img src={emptyFeedback} alt="Empty Feedbacks" />
+  //           <h1 className={styles.noFeedbackYet}>There is no feedback yet.</h1>
+  //           <p className={styles.noFeedbackP}>
+  //             Got a suggestion? Found a bug that needs to be squashed? We love
+  //             hearing about new ideas to improve our app.
+  //           </p>
+  //           <MainButton path="/new-feedback" text="+ Add Feedback" />
+  //         </div>
+  //       </Container>
+  //     </>
+  //   );
+  // }
   return (
     <>
       <Row className="place-content-center">
@@ -47,7 +47,7 @@ const FeedBackBoard = () => {
                 <div className="mb-5" />
               </Container>
             ))}
-            {theData?.length === 0 && (
+            {theData?.length=== 0 && (
               <Container>
                 <div className={styles.noFeedback}>
                   <img src={emptyFeedback} alt="Empty Feedbacks" />
