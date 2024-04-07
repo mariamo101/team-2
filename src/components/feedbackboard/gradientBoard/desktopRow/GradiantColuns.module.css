@@ -34,6 +34,7 @@
     align-items: flex-end;
   }
   .board {
+    max-width: 56%;
     display: flex;
   }
   .title2 {
@@ -58,6 +59,7 @@
   }
   .board {
     flex-direction: column;
+    max-width: 100%;
   }
 }
 @media screen and (min-width: 90rem) {
