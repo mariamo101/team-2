@@ -7,15 +7,7 @@
   display: flex;
   flex-wrap: wrap;
 }
-/* @media screen and (min-width: 48rem) {
-  .buttonBoard {
-   
-    width: 44%;
-    max-width: 53.75rem;
-    border-radius: 0.625rem;
-    min-width: 13rem;
-  }
-} */
+
 @media screen and (min-width: 48rem) {
   .buttonBoard {
     margin-right: 1rem;
@@ -27,7 +19,7 @@
 }
 @media screen and (min-width: 60rem) {
   .buttonBoard {
-    width: 100%;
+    width: 97%;
   }
 }
 @media screen and (min-width: 75rem) {

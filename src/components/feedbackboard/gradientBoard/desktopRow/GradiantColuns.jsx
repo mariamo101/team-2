@@ -16,8 +16,8 @@ export default function () {
     <div className={`${styles.tabletBar} flex-col`}>
       <div className={styles.gradientBoard}>
         <div>
-          <h1>Frontend Mentor</h1>
-          <h2>Feedback Board</h2>
+          <h1 className={styles.title1}>Frontend Mentor</h1>
+          <h2 className={styles.title2}>Feedback Board</h2>
         </div>
         <img
           style={{ cursor: "pointer" }}

@@ -11,7 +11,6 @@ import GradiantColuns from "./gradientBoard/desktopRow/GradiantColuns";
 
 const FeedBackBoard = () => {
   const { productData } = useContext(FeedbackContext);
-  console.log(productData);
   if (productData.length === 0) {
     return (
       <>

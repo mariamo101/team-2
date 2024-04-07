@@ -5,7 +5,6 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* min-width: 22.5rem; */
 }
 .sortSelect {
   width: 12rem;
@@ -31,7 +30,7 @@
 }
 .noFeedback {
   border-radius: 0.625rem;
-  /* margin: 0 1.5rem 2.94rem 1.5rem; */
+
   background-color: rgba(var(--container-bg));
   padding: 4.75rem 1.5rem;
   display: flex;

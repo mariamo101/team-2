@@ -1,7 +1,3 @@
-h1,
-h2 {
-  margin: 0;
-}
 .gradientBoard {
   background-image: url(/assets/suggestions/mobile/background-header.png);
   background-repeat: no-repeat;
@@ -11,14 +7,16 @@ h2 {
   align-items: center;
   padding: 1rem 1rem 0.94rem 1rem;
 }
-h1 {
+.title1 {
+  font-size: 0.9375rem;
   color: rgba(var(--text-white));
-  font-size: 15px;
   font-weight: 700;
   letter-spacing: -0.187px;
+  margin: 0;
 }
-h2 {
-  font-size: 13px;
+.title2 {
+  font-size: 0.8125rem;
+  margin: 0;
   font-weight: 500;
   color: rgba(var(--text-white));
   opacity: 0.75;
@@ -37,7 +35,7 @@ h2 {
   .board {
     display: flex;
   }
-  h2 {
+  .title2 {
     margin-top: 0.5rem;
   }
   .menuIcon {
