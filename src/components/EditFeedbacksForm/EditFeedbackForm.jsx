@@ -36,7 +36,7 @@ function EditFeedbackForm({product}) {
   const {id} = useParams();
 
   function handleDelete() {
-    removeProduct(1);
+    removeProduct(+id);
   }
 
   useEffect(() => {
@@ -116,7 +116,7 @@ function EditFeedbackForm({product}) {
         </div>
 
         <div className={styles.left}>
-          <button type="button" className={styles.deleteBtn} onClick={() => handleDelete(id)}>
+          <button type="button" className={styles.deleteBtn} onClick={handleDelete}>
             Delete
           </button>
           <button type="button" className={styles.cancel} onClick={handleCancel}>
