@@ -257,7 +257,6 @@ export default function FeedbackContextProvider({ children }) {
         mainData,
         deleteReplay,
         deleteComment,
-        getFeedbacksByName,
         filteredProductsByCategory,
         filteredProductsByCommentsAndUpvotes,
         mainCategory,
