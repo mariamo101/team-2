@@ -25,7 +25,6 @@ function EditFeedBack() {
   function goBack() {
     navigate(-1);
   }
-
   return (
     <>
       <main className={styles.container}>

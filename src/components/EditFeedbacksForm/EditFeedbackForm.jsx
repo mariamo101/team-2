@@ -21,27 +21,19 @@ function EditFeedbackForm({product}) {
 
   // Current Feedback Id for remove it
 
-  const {productData, editProductData, removeProduct} = useContext(FeedbackContext);
-
-  console.log(productData);
-  // Prepare categories and statuses without modifying their case
-  const categories = ["UI", "UX", "Enhancement", "Bug", "Feature"];
-  const statuses = ["Suggestion", "Live", "Planned", "In-Progress"];
-
-  // Navigate for redirecting
-
+  const { editProductData, removeProduct, categories, statuses } = useContext(FeedbackContext);
+  const { id } = useParams();
   const navigate = useNavigate();
 
+
+
+
   // For getting params
-  const {id} = useParams();
 
   function handleDelete() {
     removeProduct(+id);
   }
 
-  // useEffect(() => {
-  //   console.log(productData);
-  // }, [productData]);
 
   function handleEditProduct(data) {
     editProductData(id, data.title, data.category, data.status, data.description);
