@@ -6,6 +6,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 1rem 0.94rem 1rem;
+  width: 100%;
 }
 .title1 {
   font-size: 0.9375rem;
@@ -24,6 +25,9 @@
 .board {
   display: none;
 }
+.tabletBar {
+  width: 100%;
+}
 
 @media screen and (min-width: 48rem) {
   .gradientBoard {
@@ -34,6 +38,7 @@
     align-items: flex-end;
   }
   .board {
+    max-width: 56%;
     display: flex;
   }
   .title2 {
@@ -51,6 +56,7 @@
     justify-content: center;
   }
 }
+
 @media screen and (min-width: 62rem) {
   .tabletBar {
     flex-direction: column;
@@ -58,6 +64,10 @@
   }
   .board {
     flex-direction: column;
+    max-width: 100%;
+  }
+  .gradientBoard {
+    width: 95%;
   }
 }
 @media screen and (min-width: 90rem) {
@@ -68,6 +78,6 @@
 }
 @media screen and (min-width: 87.5rem) {
   .gradientBoard {
-    width: 15.9375rem;
+    width: 95%;
   }
 }
