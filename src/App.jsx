@@ -15,7 +15,7 @@ const NewFeedback = lazy(() => import("./pages/NewFeedback"));
 const EditFeedback = lazy(() => import("./pages/EditFeedBack"));
 const Roadmap = lazy(() => import("./pages/RoadMap"));
 // Loader
-import LoaderDark from "./components/UI/Loader";
+import Loader from "./components/UI/Loader";
 
 // const Game = lazy(() => import("./GameBoard/Game"));
 
@@ -23,7 +23,7 @@ function App() {
   return (
     <Router>
       <DarkMode />
-      <Suspense fallback={<LoaderDark />}>
+      <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/feedbacks" element={<Navigate to="/" />} />
           <Route path="/" element={<Feedbacks />} />
