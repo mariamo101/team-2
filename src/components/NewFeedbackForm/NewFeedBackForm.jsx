@@ -6,7 +6,7 @@ import {useNavigate} from "react-router-dom";
 import styles from "./NewFeedBackForm.module.css";
 
 function NewFeedBackForm() {
-  const {productData, setProduct} = useContext(FeedbackContext);
+  const {setProduct} = useContext(FeedbackContext);
   const navigate = useNavigate();
 
   // Setting Form for sending data
@@ -24,11 +24,7 @@ function NewFeedBackForm() {
   });
 
   // Extract and de-duplicate categories from product data
-  const categories = [
-    ...Array.from(new Set(productData.map(product => product.category))),
-    "ui",
-    "ux",
-  ];
+  const categories = ["UI", "UX", "enhancement", "bug", "feature"];
 
   //Adding product to to the list and resetting inputs
   function handleAddProduct(data) {
