@@ -104,7 +104,7 @@ function FeedbackContainer({
           >
             <h1 className="text-title text-[.8125rem] font-bold">{title}</h1>
             <p className={`text-paragraph ${isRoadMap && 'line-clamp-2 overflow-hidden'}`}>{description}</p>
-            <button className="bg-[#F2F4FE] text-[#4661E6] px-[13px] py-[6px] rounded-[10px] mb-[14px]">
+            <button className="bg-smBtnBg text-title px-[13px] py-[6px] rounded-[10px] mb-[14px]">
               {category}
             </button>
           </div>
