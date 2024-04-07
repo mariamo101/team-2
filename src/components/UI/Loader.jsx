@@ -1,6 +1,6 @@
 import {SyncLoader} from "react-spinners";
 
-export function LoaderDark() {
+export default function LoaderDark() {
   return (
     <>
       <SyncLoader

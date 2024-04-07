@@ -1,5 +1,10 @@
-import {lazy, Suspense} from "react";
-import {BrowserRouter as Router, Routes, Route, Navigate} from "react-router-dom";
+import { lazy, Suspense } from "react";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 
 import "./App.css";
 import DarkMode from "./components/DarkMode/DarkMode";
@@ -9,6 +14,8 @@ const Feedback = lazy(() => import("./pages/FeedBack"));
 const NewFeedback = lazy(() => import("./pages/NewFeedback"));
 const EditFeedback = lazy(() => import("./pages/EditFeedBack"));
 const Roadmap = lazy(() => import("./pages/RoadMap"));
+// Loader
+import LoaderDark from "./components/UI/Loader";
 
 // const Game = lazy(() => import("./GameBoard/Game"));
 
@@ -16,7 +23,7 @@ function App() {
   return (
     <Router>
       <DarkMode />
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<LoaderDark />}>
         <Routes>
           <Route path="/feedbacks" element={<Navigate to="/" />} />
           <Route path="/" element={<Feedbacks />} />
