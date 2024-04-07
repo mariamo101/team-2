@@ -22,6 +22,7 @@ export default function FeedbackReplyContainer({
   const { setReplies } = useContext(FeedbackContext);
   const onSubmit = async (data) => {
     setReplies(
+      Math.floor(Math.random() * Date.now()),
       comment?.id,
       commentValue,
       reply ? reply : comment?.user?.username
