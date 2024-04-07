@@ -1,5 +1,5 @@
 /* eslint-disable */
-import {createContext, useEffect, useState} from "react";
+import { createContext, useEffect, useState } from "react";
 import feedbacksData from "../data.json";
 export const FeedbackContext = createContext({
   productData: [],
@@ -8,43 +8,59 @@ export const FeedbackContext = createContext({
   editProductData: () => {},
   changeUpVotes: () => {},
   setReplies: () => {},
-  removeProduct:()=>{},
-  getFeedbacksByName:()=>{}
+  removeProduct: () => {},
+  getFeedbacksByName: () => {},
+  mainData: [],
+  deleteReplay: () => {},
+  getFeedbacksByName: () => {},
+  filteredProductsByCategory: () => {},
+  filteredProductsByComment: () => {},
+  filteredProductsByUpvotes: () => {},
 });
 
-export default function FeedbackContextProvider({children}) {
+export default function FeedbackContextProvider({ children }) {
   const [productData, setProductData] = useState(() => {
-    const storedData = localStorage.getItem('myData');
+    const storedData = localStorage.getItem("myData");
     return storedData ? JSON.parse(storedData) : feedbacksData.productRequests;
   });
   const [mainData, setMainData] = useState(feedbacksData.currentUser);
 
   useEffect(() => {
     // Update localStorage whenever productData changes
-    localStorage.setItem('myData', JSON.stringify(productData));
+    localStorage.setItem("myData", JSON.stringify(productData));
   }, [productData]);
 
-
-  function setProduct(id, title, category, upvotes, status, description, comments) {
-    setProductData(prev => [
+  function setProduct(
+    id,
+    title,
+    category,
+    upvotes,
+    status,
+    description,
+    comments
+  ) {
+    setProductData((prev) => [
       ...prev,
-      {id, title, category, upvotes, status, description, comments},
+      { id, title, category, upvotes, status, description, comments },
     ]);
   }
   function removeProduct(feedbackId) {
-    const filtered = productData.filter(product => product.id !== feedbackId);
+    const filtered = productData.filter((product) => product.id !== feedbackId);
     setProductData(filtered);
   }
 
   // add comment in feedback user object
-  function setComment(feedbackId, commentId, content, user) {
-    setProductData(prevData => {
-      return prevData.map(feedback => {
+  function setComment(feedbackId, commentId, content) {
+    setProductData((prevData) => {
+      return prevData.map((feedback) => {
         if (feedback.id === feedbackId) {
           // If the feedback matches the specified ID, add the comment
           return {
             ...feedback,
-            comments: [...(feedback.comments || []), {id: commentId, content, user}],
+            comments: [
+              ...(feedback.comments || []),
+              { id: commentId, content, user: mainData },
+            ],
           };
         }
         return feedback; // Return unchanged feedback if ID doesn't match
@@ -53,9 +69,9 @@ export default function FeedbackContextProvider({children}) {
   }
   // edit feedback user product data
   function editProductData(id, title, category, status, description) {
-    const updatedProductData = productData.map(product => {
+    const updatedProductData = productData.map((product) => {
       if (product.id === +id) {
-        return {...product, title, category, status, description};
+        return { ...product, title, category, status, description };
       }
 
       return product;
@@ -65,12 +81,14 @@ export default function FeedbackContextProvider({children}) {
   }
 
   function changeUpVotes(feedbackId) {
-    setProductData(prev => {
-      return prev.map(feedback => {
+    setProductData((prev) => {
+      return prev.map((feedback) => {
         if (feedback.id === feedbackId) {
           return {
             ...feedback,
-            upvotes: feedback.isUpVoted ? feedback.upvotes - 1 : feedback.upvotes + 1,
+            upvotes: feedback.isUpVoted
+              ? feedback.upvotes - 1
+              : feedback.upvotes + 1,
             isUpVoted: !feedback.isUpVoted,
           };
         } else {
@@ -80,12 +98,12 @@ export default function FeedbackContextProvider({children}) {
     });
   }
 
-  function setReplies(commentId, reply, commentedTo) {
+  function setReplies(userId, commentId, reply, commentedTo) {
     // Find the comment with the given ID in the productData
-    const updatedProductData = productData.map(item => {
+    const updatedProductData = productData.map((item) => {
       if (item.comments) {
         // Find the comment with the given ID
-        const updatedComments = item.comments.map(comment => {
+        const updatedComments = item.comments.map((comment) => {
           if (comment.id === commentId) {
             // Add the reply to the comment
             return {
@@ -94,6 +112,7 @@ export default function FeedbackContextProvider({children}) {
                 ? [
                     ...comment.replies,
                     {
+                      userId: userId,
                       content: reply,
                       replyingTo: commentedTo,
                       user: mainData,
@@ -101,6 +120,7 @@ export default function FeedbackContextProvider({children}) {
                   ]
                 : [
                     {
+                      userId: userId,
                       content: reply,
                       replyingTo: commentedTo,
                       user: mainData,
@@ -124,10 +144,47 @@ export default function FeedbackContextProvider({children}) {
     // You may need to setProductData(updatedProductData) here depending on your application logic
     setProductData(updatedProductData);
   }
-  
-  function getFeedbacksByName(name){
-    const filtered = productData.filter(product=> product.status === name)
-    return filtered
+
+  function deleteReplay(commentId, replyId) {
+    const updatedProductData = productData.map((item) => {
+      if (item.comments) {
+        const updatedComments = item.comments.map((comment) => {
+          if (comment.id === commentId && comment.replies) {
+            // Filter out the reply with the given replyId
+            const updatedReplies = comment.replies.filter(
+              (reply) => reply?.userId !== replyId
+            );
+            return {
+              ...comment,
+              replies: updatedReplies,
+            };
+          }
+          return comment;
+        });
+
+        return {
+          ...item,
+          comments: updatedComments,
+        };
+      }
+      return item;
+    });
+
+    setProductData(updatedProductData);
+  }
+
+  // For Feedbacks Page
+  function getFeedbacksByName(name) {
+    return productData.filter((product) => product.status === name);
+  }
+  function filteredProductsByCategory(category) {
+    return productData.filter((product) => product.category === category);
+  }
+  function filteredProductsByComment(comments) {
+    return productData.filter((product) => product.comments === comments);
+  }
+  function filteredProductsByUpvotes(upvotes) {
+    return productData.filter((product) => product.upvotes === upvotes);
   }
   return (
     <FeedbackContext.Provider
@@ -140,6 +197,12 @@ export default function FeedbackContextProvider({children}) {
         setReplies,
         removeProduct,
         getFeedbacksByName,
+        mainData,
+        deleteReplay,
+        getFeedbacksByName,
+        filteredProductsByCategory,
+        filteredProductsByComment,
+        filteredProductsByUpvotes,
       }}
     >
       {children}

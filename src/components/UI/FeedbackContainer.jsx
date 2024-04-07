@@ -1,11 +1,10 @@
 /* eslint-disable */
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 // Import SVG files
 import upArrow from "/assets/shared/icon-arrow-up.svg";
 import commentsSvg from "/assets/shared/icon-comments.svg";
 import { useContext, useEffect, useState } from "react";
 import { FeedbackContext } from "../../store/feedback-context";
-
 // User Feedback Container Component
 function FeedbackContainer({
   id,
@@ -20,6 +19,7 @@ function FeedbackContainer({
 }) {
   const [totalLength, setTotalLength] = useState(0);
   const navigate = useNavigate();
+  const location = useLocation();
   // Ensure comments array is initialized
 
   // Calculate total length of comments and replies
@@ -38,6 +38,14 @@ function FeedbackContainer({
 
     setTotalLength(getLength);
   }, []);
+
+  function navigateTo() {
+    if (location.pathname === `/feedbacks/${id}`) {
+      return;
+    } else {
+      navigate(`/feedbacks/${id}`);
+    }
+  }
 
   // Get Status Colors
   const getColor =
@@ -93,17 +101,24 @@ function FeedbackContainer({
             ) : (
               <img src={upArrow} alt="up arrow" />
             )}
-            <span className={`text-[.8125rem] font-bold ${filtered?.isUpVoted ? 'text-numsA' : 'text-title'}`}>{upvotesCount}</span>
+            <span
+              className={`text-[.8125rem] font-bold ${
+                filtered?.isUpVoted ? "text-numsA" : "text-title"
+              }`}
+            >
+              {upvotesCount}
+            </span>
           </button>
           {/* Feedback details and Redirect to edit page*/}
-          <div
-            className="cursor-pointer"
-            onClick={() => {
-              navigate(`/feedbacks/${id}`);
-            }}
-          >
+          <div className="cursor-pointer" onClick={navigateTo}>
             <h1 className="text-title text-[.8125rem] font-bold">{title}</h1>
-            <p className={`text-paragraph ${isRoadMap && 'line-clamp-2 overflow-hidden'}`}>{description}</p>
+            <p
+              className={`text-paragraph ${
+                isRoadMap && "line-clamp-2 overflow-hidden"
+              }`}
+            >
+              {description}
+            </p>
             <button className="bg-smBtnBg text-title px-[13px] py-[6px] rounded-[10px] mb-[14px]">
               {category}
             </button>
@@ -112,11 +127,14 @@ function FeedbackContainer({
 
         {/* Comments and upvote button for mobile */}
         <div className="md:px-5 flex justify-between">
-          <button onClick={() => changeUpVote(id)} className={`flex items-center gap-[10px] bg-[#F2F4FE] px-[13px] py-[6px] rounded-[10px] h-fit md:hidden ${
+          <button
+            onClick={() => changeUpVote(id)}
+            className={`flex items-center gap-[10px] bg-[#F2F4FE] px-[13px] py-[6px] rounded-[10px] h-fit md:hidden ${
               filtered?.isUpVoted
                 ? "bg-smBtnBgA text-white"
                 : "bg-smBtnBg text-nums"
-            }`}>
+            }`}
+          >
             {filtered?.isUpVoted ? (
               <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -130,12 +148,20 @@ function FeedbackContainer({
             ) : (
               <img src={upArrow} alt="up arrow" />
             )}
-            <span className={`text-[.8125rem] font-bold ${filtered?.isUpVoted ? 'text-numsA' : 'text-title'}`}>{upvotesCount}</span>
+            <span
+              className={`text-[.8125rem] font-bold ${
+                filtered?.isUpVoted ? "text-numsA" : "text-title"
+              }`}
+            >
+              {upvotesCount}
+            </span>
           </button>
           {/* Comments count */}
           <div className="flex items-center gap-2">
             <img src={commentsSvg} alt="comments" />
-            <span className="text-nums">{commentsLength ? commentsLength : totalLength | 0}</span>
+            <span className="text-nums">
+              {commentsLength ? commentsLength : totalLength | 0}
+            </span>
           </div>
         </div>
       </div>
