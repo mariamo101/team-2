@@ -1,7 +1,7 @@
 import FeedbackContainer from "../UI/FeedbackContainer";
 import MobileHeader from "../feedbackboard/headerContainer/MobileHeader";
 import styles from "./FeedBackBoard.module.css";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FeedbackContext } from "../../store/feedback-context";
 import { Container, Row, Col } from "reactstrap";
 import emptyFeedback from "/assets/suggestions/illustration-empty.svg";
@@ -10,7 +10,11 @@ import GradiantColuns from "./gradientBoard/desktopRow/GradiantColuns";
 
 const FeedBackBoard = () => {
   const { productData, mainCategory } = useContext(FeedbackContext);
-  console.log(mainCategory);
+  const [theData, setTheData] = useState(null)
+  useEffect(() => {
+      setTheData(mainCategory)
+  }, [mainCategory])
+  
   if (productData.length === 0) {
     return (
       <>
@@ -37,13 +41,13 @@ const FeedBackBoard = () => {
         <Col lg="7" md="12" className="p-0">
           <MobileHeader />
           <div>
-            {mainCategory?.map((product) => (
+            {theData?.map((product) => (
               <Container key={Math.floor(Math.random() * Date.now())}>
                 <FeedbackContainer {...product} />
                 <div className="mb-5" />
               </Container>
             ))}
-            {mainCategory.length=== 0 && (
+            {theData?.length === 0 && (
               <Container>
                 <div className={styles.noFeedback}>
                   <img src={emptyFeedback} alt="Empty Feedbacks" />

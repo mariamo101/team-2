@@ -192,9 +192,28 @@ export default function FeedbackContextProvider({ children }) {
       );
     }
   }
-  function filteredProductsByComment(comments) {
-    return productData.filter((product) => product.comments === comments);
+  function filteredProductsByComment(type) {
+    let sortedProductRequests = [...mainCategory];
+    switch (type) {
+      case "mostComments":
+        sortedProductRequests.sort((a, b) => {
+          const numCommentsA = a.comments ? a.comments.length : 0;
+          const numCommentsB = b.comments ? b.comments.length : 0;
+          return numCommentsB - numCommentsA; // Sort in descending order
+        });
+        break;
+      case "leastComments":
+        sortedProductRequests.sort((a, b) => {
+          const numCommentsA = a.comments ? a.comments.length : 0;
+          const numCommentsB = b.comments ? b.comments.length : 0;
+          return numCommentsA - numCommentsB; // Sort in ascending order for least comments
+        });
+        break;
+    }
+
+    setMainCategory(sortedProductRequests);
   }
+
   function filteredProductsByUpvotes(upvotes) {
     return productData.filter((product) => product.upvotes === upvotes);
   }
