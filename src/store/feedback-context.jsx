@@ -11,7 +11,11 @@ export const FeedbackContext = createContext({
   removeProduct: () => {},
   getFeedbacksByName: () => {},
   mainData: [],
-  deleteReplay:()=>{},
+  deleteReplay: () => {},
+  getFeedbacksByName: () => {},
+  filteredProductsByCategory: () => {},
+  filteredProductsByComment: () => {},
+  filteredProductsByUpvotes: () => {},
 });
 
 export default function FeedbackContextProvider({ children }) {
@@ -168,9 +172,18 @@ export default function FeedbackContextProvider({ children }) {
     setProductData(updatedProductData);
   }
 
+  // For Feedbacks Page
   function getFeedbacksByName(name) {
-    const filtered = productData.filter((product) => product.status === name);
-    return filtered;
+    return productData.filter((product) => product.status === name);
+  }
+  function filteredProductsByCategory(category) {
+    return productData.filter((product) => product.category === category);
+  }
+  function filteredProductsByComment(comments) {
+    return productData.filter((product) => product.comments === comments);
+  }
+  function filteredProductsByUpvotes(upvotes) {
+    return productData.filter((product) => product.upvotes === upvotes);
   }
   return (
     <FeedbackContext.Provider
@@ -185,6 +198,10 @@ export default function FeedbackContextProvider({ children }) {
         getFeedbacksByName,
         mainData,
         deleteReplay,
+        getFeedbacksByName,
+        filteredProductsByCategory,
+        filteredProductsByComment,
+        filteredProductsByUpvotes,
       }}
     >
       {children}
