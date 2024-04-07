@@ -54,7 +54,7 @@ function FeedbackContainer({
 
   return (
     <div
-      className={`flex flex-col gap-[20px] bg-containerBg rounded-[10px] p-[24px] md:p-[28px] lg:px-[32px] relative`}
+      className={`flex flex-col gap-[20px] bg-containerBg rounded-[10px] p-[24px] md:p-[28px] lg:px-[32px] relative hover:scale-x-95 hover:scale-y-105`}
     >
       {/* User Feedback Container */}
 
