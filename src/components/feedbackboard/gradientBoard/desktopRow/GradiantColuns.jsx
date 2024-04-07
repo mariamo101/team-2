@@ -1,4 +1,4 @@
-import React from "react";
+/* eslint-disable */
 import hamburger from "/assets/shared/mobile/icon-hamburger.svg";
 import close from "/assets/shared/mobile/icon-close.svg";
 import { useState } from "react";
@@ -10,7 +10,7 @@ import styles from "./GradiantColuns.module.css";
 export default function () {
   const [menu, setMenu] = useState(false);
   const toggleMenu = () => {
-    setMenu((prew) => setMenu(!prew));
+    setMenu((prev) => !prev);
   };
   return (
     <div className={`${styles.tabletBar} flex-col`}>
