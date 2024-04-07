@@ -54,7 +54,7 @@ function FeedbackContainer({
 
   return (
     <div
-      className={`flex flex-col gap-[20px] bg-containerBg rounded-[10px] p-[24px] md:p-[28px] lg:px-[32px] relative`}
+      className={`flex flex-col gap-[20px] bg-containerBg rounded-[10px] p-[24px] md:p-[28px] lg:px-[32px] relative hover:scale-x-95 hover:scale-y-105`}
     >
       {/* User Feedback Container */}
 
@@ -65,7 +65,7 @@ function FeedbackContainer({
             className={`${getColor} absolute w-full h-2 left-0 top-0 rounded-t-full`}
           />
           <div className={`w-2 h-2 rounded-full ${getColor}`} />
-          <div className="pl-3 text-[#647196] text-[.8125rem]">{status}</div>
+          <div className="pl-3 text-paragraph text-[.8125rem]">{status}</div>
         </div>
       )}
 
@@ -85,7 +85,7 @@ function FeedbackContainer({
               <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg">
                 <path
                   d="M1 6l4-4 4 4"
-                  stroke={`${filtered?.isUpVoted ? '#fff' : '#000'}`}
+                  stroke="#000"
                   stroke-width="2"
                   fill="none"
                   fill-rule="evenodd"
@@ -94,17 +94,17 @@ function FeedbackContainer({
             ) : (
               <img src={upArrow} alt="up arrow" />
             )}
-            <span className={`text-[.8125rem] font-bold ${filtered?.isUpVoted ? 'text-white' : 'text-nums'}`}>{upvotes}</span>
+            <span className={`text-[.8125rem] font-bold ${filtered?.isUpVoted ? 'text-smBtnTxtA' : 'text-nums'}`}>{upvotes}</span>
           </button>
           {/* Feedback details and Redirect to edit page*/}
           <div
             className="cursor-pointer"
             onClick={() => {
-              navigate(`/edit-feedback/${id}`);
+              navigate(`/feedbacks/${id}`);
             }}
           >
             <h1 className="text-title text-[.8125rem] font-bold">{title}</h1>
-            <p className="text-paragraph">{description}</p>
+            <p className={`text-paragraph ${isRoadMap && 'line-clamp-2 overflow-hidden'}`}>{description}</p>
             <button className="bg-[#F2F4FE] text-[#4661E6] px-[13px] py-[6px] rounded-[10px] mb-[14px]">
               {category}
             </button>
@@ -131,7 +131,7 @@ function FeedbackContainer({
             ) : (
               <img src={upArrow} alt="up arrow" />
             )}
-            <span className={`text-[.8125rem] font-bold ${filtered?.isUpVoted ? 'text-black' : 'text-white'}`}>{upvotes}</span>
+            <span className={`text-[.8125rem] font-bold ${filtered?.isUpVoted ? 'text-smBtnTxtA' : 'text-title'}`}>{upvotes}</span>
           </button>
           {/* Comments count */}
           <div className="flex items-center gap-2">
