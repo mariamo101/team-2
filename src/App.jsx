@@ -19,6 +19,8 @@ import Loader from "./components/UI/Loader";
 
 // const Game = lazy(() => import("./GameBoard/Game"));
 
+// const Game = lazy(() => import("./GameBoard/Game"));
+
 function App() {
   return (
     <Router>
