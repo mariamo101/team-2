@@ -147,7 +147,7 @@ export default function FeedbackContextProvider({ children }) {
           if (comment.id === commentId && comment.replies) {
             // Filter out the reply with the given replyId
             const updatedReplies = comment.replies.filter(
-              (reply) => reply.id !== replyId
+              (reply) => reply?.userId !== replyId
             );
             return {
               ...comment,

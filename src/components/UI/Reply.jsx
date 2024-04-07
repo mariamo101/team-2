@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "../../styles/Comment.module.css";
 import FeedbackReplyContainer from "./FeedbackReplyContainer";
 
+// Use context
 import { useContext } from "react";
 import { FeedbackContext } from "../../store/feedback-context";
 
@@ -23,12 +24,12 @@ const Reply = ({ comment, reply }) => {
     setIsReply((prev) => !prev);
   }
   function handleDelete(){
-    console.log(reply);
-    console.log(comment);
     deleteReplay(comment.id, reply.userId)
+    setIsReply(false)
   }
   return (
     <article className={`pl-20 pr-8 w-full ${styles.animation}`}>
+      
       <div className="flex items-center justify-between flex-wrap">
         <div className="flex gap-3 items-center md:gap-8">
           <img
@@ -54,9 +55,10 @@ const Reply = ({ comment, reply }) => {
           @{reply.replyingTo}
         </span>{" "}
         {reply.content}
+        
       </p>
       {
-        isValidToDelete && <button className="btn btn-danger mb-6" onClick={handleDelete}>Delete</button>
+        isValidToDelete && <button className="bg-smBtnBg text-nums rounded-md mb-6 -mt-5 px-3 py-2  border-[1px] border-paragraph" onClick={handleDelete}>Delete</button>
       }
       {isReply && (
         <FeedbackReplyContainer comment={comment} reply={reply.user?.username} toggleReply={toggleReply} />
