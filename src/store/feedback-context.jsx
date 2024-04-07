@@ -12,6 +12,7 @@ export const FeedbackContext = createContext({
   getFeedbacksByName: () => {},
   mainData: [],
   deleteReplay: () => {},
+  deleteComment:()=>{},
   getFeedbacksByName: () => {},
   filteredProductsByCategory: () => {},
   filteredProductsByComment: () => {},
@@ -144,6 +145,20 @@ export default function FeedbackContextProvider({ children }) {
     // You may need to setProductData(updatedProductData) here depending on your application logic
     setProductData(updatedProductData);
   }
+  
+  function deleteComment(commentId){
+    const updateProductData = productData.map(item=>{
+      if(item.comments){
+        const filteredComments = item.comments.filter(comment=> comment?.id !== commentId)
+        return{
+          ...item,
+          comments: filteredComments,
+        }
+      }
+      return item;
+    })
+    setProductData(updateProductData)
+  }
 
   function deleteReplay(commentId, replyId) {
     const updatedProductData = productData.map((item) => {
@@ -199,6 +214,7 @@ export default function FeedbackContextProvider({ children }) {
         getFeedbacksByName,
         mainData,
         deleteReplay,
+        deleteComment,
         getFeedbacksByName,
         filteredProductsByCategory,
         filteredProductsByComment,
