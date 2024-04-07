@@ -38,7 +38,7 @@ function EditFeedBack() {
         </header>
         <section className={styles.content}>
           <img src={Icon} alt="plus icon" className={styles.plus} />
-          <h2 className={styles.title}>Editing`{product?.title}`</h2>
+          <h2 className={styles.title}>Editing `{product?.title}`</h2>
 
           {product && <EditFeedbackForm product={product} />}
         </section>

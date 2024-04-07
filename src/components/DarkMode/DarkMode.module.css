@@ -1,0 +1,61 @@
+.container {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+}
+
+.arrow {
+  cursor: pointer;
+  transition: opacity 0.5s ease-in-out;
+  transform: translateX(90%) translateY(-5%);
+}
+
+.arrowHidden {
+  opacity: 0;
+}
+
+.icon {
+  transform: translateX(200%) translateY(0);
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  will-change: transform, opacity;
+  width: 40px;
+  height: 40px;
+  color: darkblue;
+}
+
+.iconSun {
+  color: gold;
+}
+
+.iconVisible {
+  transform: translateX(-150%) translateY(-150%);
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+}
+
+.iconDisappearing {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+@keyframes slide-tl {
+  0% {
+    transform: translateY(0) translateX(0);
+  }
+  100% {
+    transform: translateY(-100px) translateX(-100px);
+  }
+}
+
+@keyframes disappear {
+  from {
+    opacity: 1;
+    transform: translateX(0) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-50%);
+  }
+}

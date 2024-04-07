@@ -1,12 +1,13 @@
 import {useContext} from "react";
 import {FeedbackContext} from "../../store/feedback-context";
 import {useForm} from "react-hook-form";
-import {Link} from "react-router-dom";
 
+import {useNavigate} from "react-router-dom";
 import styles from "./NewFeedBackForm.module.css";
 
 function NewFeedBackForm() {
   const {productData, setProduct} = useContext(FeedbackContext);
+  const navigate = useNavigate();
 
   // Setting Form for sending data
   const {
@@ -23,12 +24,16 @@ function NewFeedBackForm() {
   });
 
   // Extract and de-duplicate categories from product data
-  const categories = Array.from(new Set(productData.map(product => product.category)));
+  const categories = [
+    ...Array.from(new Set(productData.map(product => product.category))),
+    "ui",
+    "ux",
+  ];
 
   //Adding product to to the list and resetting inputs
   function handleAddProduct(data) {
     setProduct(
-      Math.floor(Date.now() * Math.random()),
+      Math.floor(Math.random() * Date.now()),
       data.title,
       data.category,
       0,
@@ -37,6 +42,12 @@ function NewFeedBackForm() {
       []
     );
     reset();
+    navigate("/");
+  }
+
+  function handleCancel() {
+    reset();
+    navigate("/");
   }
   return (
     <form className={styles.form} onSubmit={handleSubmit(data => handleAddProduct(data))}>
@@ -69,9 +80,10 @@ function NewFeedBackForm() {
           ))}
         </select>
       </fieldset>
+
       <fieldset>
         <label htmlFor="name" className={styles.label}>
-          Feedback Description
+          Feedback Detail
         </label>
         <p className={styles.paragraph}>
           Include any specific comments on what should be improved, added, etc.
@@ -84,11 +96,11 @@ function NewFeedBackForm() {
       </fieldset>
       <div className={styles.buttonsContainer}>
         <button className={styles.addBtn} type="submit">
-          Submit
+          Add Feedback
         </button>
-        <Link className={styles.cancel} to="/">
-          <button>Cancel</button>
-        </Link>
+        <button type="button" className={styles.cancel} onClick={() => handleCancel()}>
+          Cancel
+        </button>
       </div>
     </form>
   );

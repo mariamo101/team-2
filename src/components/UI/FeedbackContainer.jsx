@@ -1,8 +1,10 @@
 /* eslint-disable */
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 // Import SVG files
 import upArrow from "/assets/shared/icon-arrow-up.svg";
 import commentsSvg from "/assets/shared/icon-comments.svg";
+import { useContext, useEffect, useState } from "react";
+import { FeedbackContext } from "../../store/feedback-context";
 
 // User Feedback Container Component
 function FeedbackContainer({
@@ -13,20 +15,29 @@ function FeedbackContainer({
   upvotes,
   comments,
   status,
+  commentsLength,
   isRoadMap = false,
 }) {
+  const [totalLength, setTotalLength] = useState(0);
   const navigate = useNavigate();
   // Ensure comments array is initialized
-  const allComments = comments || [];
 
   // Calculate total length of comments and replies
-  const totalLength = allComments.reduce((acc, comment) => {
-    if (comment.replies) {
-      return acc + comment?.replies.length;
-    } else {
-      return acc + comments?.length;
-    }
-  }, 0);
+
+  const { productData, changeUpVotes } = useContext(FeedbackContext);
+  const filtered = productData.find((product) => product.id === +id);
+  useEffect(() => {
+    // Filter product data based on id
+    const getLength = filtered?.comments?.reduce((acc, comment) => {
+      if (comment.replies) {
+        return acc + comment.replies.length + 1; // Adding 1 for the original comment
+      } else {
+        return acc + 1; // Adding 1 for the comment itself
+      }
+    }, 0);
+
+    setTotalLength(getLength);
+  }, []);
 
   // Get Status Colors
   const getColor =
@@ -35,9 +46,15 @@ function FeedbackContainer({
       : status?.toLowerCase() === "in-progress"
       ? "bg-[#AD1FEA]"
       : "bg-[#62BCFA]";
+
+  function changeUpVote(feedbackId) {
+    changeUpVotes(feedbackId);
+    console.log(productData);
+  }
+
   return (
     <div
-      className={`flex flex-col gap-[20px] bg-white rounded-[10px] p-[24px] md:p-[28px] lg:px-[32px] relative`}
+      className={`flex flex-col gap-[20px] bg-containerBg rounded-[10px] p-[24px] md:p-[28px] lg:px-[32px] relative`}
     >
       {/* User Feedback Container */}
 
@@ -56,16 +73,38 @@ function FeedbackContainer({
         <div className="flex gap-[40px]">
           {/* Upvote button */}
 
-          <button className="hidden md:flex flex-col items-center gap-[10px] bg-[#F2F4FE] px-[13px] py-[6px] rounded-[10px] h-fit">
-            <img src={upArrow} alt="up arrow" />
-            <span className="text-[.8125rem] text-[#3A4374] font-bold">
-              {upvotes}
-            </span>
+          <button
+            className={`hidden md:flex flex-col items-center gap-[10px] px-[13px] py-[6px] rounded-[10px] h-fit w-10 ${
+              filtered?.isUpVoted
+                ? "bg-smBtnBgA text-nums"
+                : "bg-smBtnBg text-nums"
+            }`}
+            onClick={() => changeUpVote(id)}
+          >
+            {filtered?.isUpVoted ? (
+              <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M1 6l4-4 4 4"
+                  stroke={`${filtered?.isUpVoted ? '#fff' : '#000'}`}
+                  stroke-width="2"
+                  fill="none"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            ) : (
+              <img src={upArrow} alt="up arrow" />
+            )}
+            <span className={`text-[.8125rem] font-bold ${filtered?.isUpVoted ? 'text-white' : 'text-nums'}`}>{upvotes}</span>
           </button>
           {/* Feedback details and Redirect to edit page*/}
-          <div className='cursor-pointer' onClick={()=>{navigate(`/edit-feedback/${id}`)}}>
+          <div
+            className="cursor-pointer"
+            onClick={() => {
+              navigate(`/edit-feedback/${id}`);
+            }}
+          >
             <h1 className="text-title text-[.8125rem] font-bold">{title}</h1>
-            <p className='text-paragraph'>{description}</p>
+            <p className="text-paragraph">{description}</p>
             <button className="bg-[#F2F4FE] text-[#4661E6] px-[13px] py-[6px] rounded-[10px] mb-[14px]">
               {category}
             </button>
@@ -74,16 +113,30 @@ function FeedbackContainer({
 
         {/* Comments and upvote button for mobile */}
         <div className="md:px-5 flex justify-between">
-          <button className="flex items-center gap-[10px] bg-[#F2F4FE] px-[13px] py-[6px] rounded-[10px] h-fit md:hidden">
-            <img src={upArrow} alt="up arrow" />
-            <span className="text-[.8125rem] text-[#3A4374] font-bold">
-              {upvotes}
-            </span>
+          <button onClick={() => changeUpVote(id)} className={`flex items-center gap-[10px] bg-[#F2F4FE] px-[13px] py-[6px] rounded-[10px] h-fit md:hidden ${
+              filtered?.isUpVoted
+                ? "bg-smBtnBgA text-white"
+                : "bg-smBtnBg text-nums"
+            }`}>
+            {filtered?.isUpVoted ? (
+              <svg width="10" height="7" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M1 6l4-4 4 4"
+                  stroke="#000"
+                  stroke-width="2"
+                  fill="none"
+                  fill-rule="evenodd"
+                />
+              </svg>
+            ) : (
+              <img src={upArrow} alt="up arrow" />
+            )}
+            <span className={`text-[.8125rem] font-bold ${filtered?.isUpVoted ? 'text-black' : 'text-white'}`}>{upvotes}</span>
           </button>
           {/* Comments count */}
           <div className="flex items-center gap-2">
             <img src={commentsSvg} alt="comments" />
-            <span>{totalLength}</span>
+            <span className="text-nums">{commentsLength ? commentsLength : totalLength | 0}</span>
           </div>
         </div>
       </div>
