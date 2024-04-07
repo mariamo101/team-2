@@ -4,11 +4,11 @@ import suggestion from "/assets/suggestions/icon-suggestions.svg";
 import { useContext } from "react";
 import { FeedbackContext } from "../../../store/feedback-context";
 export default function MobileHeader() {
-  const { getFeedbacksByName,mainCategory,filteredProductsByComment } = useContext(FeedbackContext);
+  const { getFeedbacksByName,mainCategory,filteredProductsByCommentsAndUpvotes } = useContext(FeedbackContext);
     
   const suggestions = getFeedbacksByName("suggestion").length;
   function sortMostComments(type){
-    filteredProductsByComment(type.target.value)
+    filteredProductsByCommentsAndUpvotes(type.target.value)
     console.log(type.target.value);
     console.log(mainCategory);
   }

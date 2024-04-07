@@ -14,8 +14,7 @@ export const FeedbackContext = createContext({
   deleteReplay: () => {},
   getFeedbacksByName: () => {},
   filteredProductsByCategory: () => {},
-  filteredProductsByComment: () => {},
-  filteredProductsByUpvotes: () => {},
+  filteredProductsByCommentsAndUpvotes: () => {},
   mainCategory: [],
 });
 
@@ -192,7 +191,7 @@ export default function FeedbackContextProvider({ children }) {
       );
     }
   }
-  function filteredProductsByComment(type) {
+  function filteredProductsByCommentsAndUpvotes(type) {
     let sortedProductRequests = [...mainCategory];
     switch (type) {
       case "mostComments":
@@ -209,14 +208,26 @@ export default function FeedbackContextProvider({ children }) {
           return numCommentsA - numCommentsB; // Sort in ascending order for least comments
         });
         break;
+      case "mostUpvotes":
+        sortedProductRequests.sort((a, b) => {
+          const numUpvotesA = a.upvotes || 0;
+          const numUpvotesB = b.upvotes || 0;
+          return numUpvotesB - numUpvotesA; // Sort in descending order for most upvotes
+        });
+        break;
+      case "leastUpvotes":
+        sortedProductRequests.sort((a, b) => {
+          const numUpvotesA = a.upvotes || 0;
+          const numUpvotesB = b.upvotes || 0;
+          return numUpvotesA - numUpvotesB; // Sort in ascending order for least upvotes
+        });
+        break;
     }
 
     setMainCategory(sortedProductRequests);
   }
 
-  function filteredProductsByUpvotes(upvotes) {
-    return productData.filter((product) => product.upvotes === upvotes);
-  }
+
   return (
     <FeedbackContext.Provider
       value={{
@@ -232,8 +243,7 @@ export default function FeedbackContextProvider({ children }) {
         deleteReplay,
         getFeedbacksByName,
         filteredProductsByCategory,
-        filteredProductsByComment,
-        filteredProductsByUpvotes,
+        filteredProductsByCommentsAndUpvotes,
         mainCategory,
       }}
     >
