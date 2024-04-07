@@ -9,12 +9,14 @@ export default function ButtonBoard() {
     word.charAt(0).toUpperCase() + word.slice(1);
 
   const { productData } = useContext(FeedbackContext);
-  const categories = [
+  const categoriesOrder = [
     "All",
     "UI",
     "UX",
     ...Array.from(new Set(productData.map((product) => product.category))),
   ];
+
+  const categories = ["All", "UI", "UX", "enhancement", "bug", "feature"];
 
   return (
     <div className={`${styles.buttonBoard} `}>
@@ -23,12 +25,6 @@ export default function ButtonBoard() {
           <SmallButtons text={capitalizeFirstLetter(category)} key={index} />
         );
       })}
-      {/* <SmallButtons text="All" />
-      <SmallButtons text="UI" />
-      <SmallButtons text="UX" />
-      <SmallButtons text="Enhancement" />
-      <SmallButtons text="Bug" />
-      <SmallButtons text="Feature" /> */}
     </div>
   );
 }
