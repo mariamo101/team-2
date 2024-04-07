@@ -1,11 +1,15 @@
 import styles from "./MobileHeader.module.css";
 import MainButton from "../mainButton/MainButton";
-import GradientBoard from "../gradientBoard/GradientBoard";
+import suggestion from "/assets/suggestions/icon-suggestions.svg";
 export default function MobileHeader() {
   return (
-    <div className="flex w-full flex-col lg:hidden">
-      <GradientBoard />
+    <div className="flex w-full flex-col lg:flex-col">
       <div className={styles.blueCont}>
+        <div className={styles.headerSuggestions}>
+          <img className={styles.suggestion} src={suggestion} alt="" />
+          <span className={styles.suggestionSpan}>6</span>
+          <p className={styles.suggestionP}>Suggestions</p>
+        </div>
         <form className={styles.sort}>
           <label htmlFor="sortBy">Sort By:</label>
           <select className={styles.selectOption}>
@@ -16,7 +20,7 @@ export default function MobileHeader() {
           </select>
         </form>
 
-        <MainButton text="+ Add Feedback" />
+        <MainButton path="/new-feedback" text="+ Add Feedback" />
       </div>
     </div>
   );

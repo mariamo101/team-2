@@ -1,7 +1,8 @@
 import styles from "./EditFeedbackForm.module.css";
-import {useContext} from "react";
+import {useContext, useEffect} from "react";
 import {FeedbackContext} from "../../store/feedback-context";
 import {useForm} from "react-hook-form";
+import {useParams, useNavigate} from "react-router-dom";
 
 function EditFeedbackForm({product}) {
   // Initialize form with default values from the product
@@ -18,14 +19,37 @@ function EditFeedbackForm({product}) {
     },
   });
 
-  const {productData} = useContext(FeedbackContext);
+  // Current Feedback Id for remove it
 
+  const {productData, editProductData, removeProduct} = useContext(FeedbackContext);
+
+  console.log(productData);
   // Prepare categories and statuses without modifying their case
   const categories = ["UI", "UX", ...new Set(productData.map(item => item.category))];
   const statuses = [...new Set(productData.map(item => item.status))];
 
+  // Navigate for redirecting
+
+  const navigate = useNavigate();
+
+  // For getting params
+  const {id} = useParams();
+
+  function handleDelete() {
+    removeProduct(1);
+  }
+
+  useEffect(() => {
+    console.log(productData);
+  }, [productData]);
+
   function handleEditProduct(data) {
-    console.log(data);
+    editProductData(id, data.title, data.category, data.status, data.description);
+    navigate("/roadmap");
+  }
+
+  function handleCancel() {
+    navigate(-1);
   }
 
   return (
@@ -87,15 +111,15 @@ function EditFeedbackForm({product}) {
       <div className={styles.buttonsContainer}>
         <div className={styles.right}>
           <button className={styles.addBtn} type="submit">
-            Add Feedback
+            Edit Feedback
           </button>
         </div>
 
         <div className={styles.left}>
-          <button type="button" className={styles.deleteBtn}>
+          <button type="button" className={styles.deleteBtn} onClick={() => handleDelete(id)}>
             Delete
           </button>
-          <button type="button" className={styles.cancel}>
+          <button type="button" className={styles.cancel} onClick={handleCancel}>
             Cancel
           </button>
         </div>
