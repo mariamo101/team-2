@@ -16,7 +16,7 @@ export const FeedbackContext = createContext({
   filteredProductsByCategory: () => {},
   filteredProductsByComment: () => {},
   filteredProductsByUpvotes: () => {},
-  mainCategory:[],
+  mainCategory: [],
 });
 
 export default function FeedbackContextProvider({ children }) {
@@ -25,7 +25,9 @@ export default function FeedbackContextProvider({ children }) {
     return storedData ? JSON.parse(storedData) : feedbacksData.productRequests;
   });
   const [mainData, setMainData] = useState(feedbacksData.currentUser);
-  const [mainCategory,setMainCategory] = useState(productData);
+  const [mainCategory, setMainCategory] = useState(
+    productData?.filter((item) => item?.category === "feature")
+  );
 
   useEffect(() => {
     // Update localStorage whenever productData changes
@@ -180,7 +182,15 @@ export default function FeedbackContextProvider({ children }) {
     return productData.filter((product) => product.status === name);
   }
   function filteredProductsByCategory(category) {
-    setMainCategory(productData.filter((product) => product.category === category))
+    if (category === "All") {
+      setMainCategory(
+        productData.filter((product) => product.category === "feature")
+      );
+    } else {
+      setMainCategory(
+        productData.filter((product) => product.category === category)
+      );
+    }
   }
   function filteredProductsByComment(comments) {
     return productData.filter((product) => product.comments === comments);

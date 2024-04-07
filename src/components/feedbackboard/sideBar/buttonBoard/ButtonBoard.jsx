@@ -25,7 +25,7 @@ export default function ButtonBoard() {
       {categories.map((category, index) => {
         return (
           <div key={index}>
-            <button className={styles.button} onClick={()=>handleCategory(category)}>{category}</button>
+            <button className={styles.button} onClick={()=>handleCategory(category)}>{capitalizeFirstLetter(category)}</button>
           </div>
         );
       })}
