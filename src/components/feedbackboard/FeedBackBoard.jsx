@@ -6,7 +6,6 @@ import { FeedbackContext } from "../../store/feedback-context";
 import { Container, Row, Col } from "reactstrap";
 import emptyFeedback from "/assets/suggestions/illustration-empty.svg";
 import MainButton from "./mainButton/MainButton";
-import GradientBoard from "./gradientBoard/GradientBoard";
 import GradiantColuns from "./gradientBoard/desktopRow/GradiantColuns";
 
 const FeedBackBoard = () => {
