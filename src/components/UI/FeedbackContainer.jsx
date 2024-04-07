@@ -53,7 +53,7 @@ function FeedbackContainer({
   const upvotesCount = filtered ? filtered.upvotes : upvotes;
   return (
     <div
-      className={`flex flex-col gap-[20px] bg-containerBg rounded-[10px] p-[24px] md:p-[28px] lg:px-[32px] relative`}
+      className={`flex flex-col gap-[20px] bg-containerBg rounded-[10px] p-[24px] md:p-[28px] lg:px-[32px] relative hover:scale-x-95 hover:scale-y-105`}
     >
       {/* User Feedback Container */}
 
@@ -64,7 +64,7 @@ function FeedbackContainer({
             className={`${getColor} absolute w-full h-2 left-0 top-0 rounded-t-full`}
           />
           <div className={`w-2 h-2 rounded-full ${getColor}`} />
-          <div className="pl-3 text-[#647196] text-[.8125rem]">{status}</div>
+          <div className="pl-3 text-paragraph text-[.8125rem]">{status}</div>
         </div>
       )}
 
