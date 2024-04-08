@@ -11,8 +11,8 @@ export default function ButtonBoard() {
   const { filteredProductsByCategory } = useContext(FeedbackContext);
 
   function handleCategory(category){
-    const allProduct = filteredProductsByCategory(category)
-    console.log(allProduct);
+    filteredProductsByCategory(category);
+    localStorage.setItem('category', category)
   }
 
   const categories = ["All", "UI", "UX", "enhancement", "bug", "feature"];
