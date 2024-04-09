@@ -31,6 +31,7 @@ export default function FeedbackContextProvider({ children }) {
   useEffect(() => {
     // Update localStorage whenever productData changes
     localStorage.setItem("myData", JSON.stringify(productData));
+    setMainCategory(productData?.filter((item) => item?.category === `${localStorage.getItem('category') || 'feature'}`))
   }, [productData]);
 
   function setProduct(
@@ -263,7 +264,6 @@ export default function FeedbackContextProvider({ children }) {
         filteredProductsByCategory,
         filteredProductsByCommentsAndUpvotes,
         mainCategory,
-        productData,
         categories,
         statuses,
         setProductData,

@@ -13,7 +13,8 @@ const FeedBackBoard = () => {
   const [theData, setTheData] = useState(null)
   useEffect(() => {
       setTheData(mainCategory)
-  }, [mainCategory])
+      console.log(mainCategory);
+  }, [mainCategory,productData])
   
   // if (productData.length === 0) {
   //   return (
