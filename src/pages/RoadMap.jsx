@@ -60,7 +60,7 @@ function RoadMap() {
               lg="1"
               className="items-center justify-between  text-[.6125rem] mobile:text-[.8125rem] flex flex-col"
             >
-              <div className="flex  items-center gap-3 cursor-pointer flex-wrap  flex-row self-start">
+              <div className="flex  items-center gap-3 cursor-pointer flex-wrap  flex-row self-start"  onClick={() => navigate('/')}>
                 <svg width="7" height="10" xmlns="http://www.w3.org/2000/svg">
                   <path
                     d="M6 9L2 5l4-4"
@@ -70,7 +70,7 @@ function RoadMap() {
                     fill-rule="evenodd"
                   />
                 </svg>
-                <span className=" font-bold" onClick={() => navigate(-1)}>
+                <span className=" font-bold" >
                   Go Back
                 </span>
               </div>
